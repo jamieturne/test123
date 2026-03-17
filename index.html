@@ -11,26 +11,27 @@
             --alfa-red: #EF3124;
             --alfa-red-hover: #D42B1F;
             --alfa-red-dark: #C41E12;
-            --alfa-black: #0B0B0B;
-            --alfa-dark: #141414;
-            --alfa-card: #1A1A1A;
-            --alfa-card-hover: #222222;
-            --alfa-gray-900: #1C1C1C;
-            --alfa-gray-800: #2A2A2A;
-            --alfa-gray-700: #3A3A3A;
-            --alfa-gray-400: #8E8E93;
-            --alfa-gray-300: #AEAEB2;
-            --alfa-gray-200: #C7C7CC;
-            --alfa-white: #FFFFFF;
-            --alfa-white-90: rgba(255,255,255,0.9);
-            --alfa-white-70: rgba(255,255,255,0.7);
-            --alfa-white-50: rgba(255,255,255,0.5);
-            --alfa-white-30: rgba(255,255,255,0.3);
-            --alfa-white-10: rgba(255,255,255,0.1);
-            --alfa-white-05: rgba(255,255,255,0.05);
-            --alfa-green: #30D158;
-            --alfa-blue: #007AFF;
-            --alfa-orange: #FF9F0A;
+            --bg: #FFFFFF;
+            --bg-alt: #F5F5F7;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #FAFAFA;
+            --bg-subtle: rgba(3,3,6,0.03);
+            --text-primary: rgba(3,3,6,0.88);
+            --text-secondary: rgba(3,3,6,0.55);
+            --text-tertiary: rgba(3,3,6,0.35);
+            --text-quaternary: rgba(3,3,6,0.2);
+            --border: rgba(3,3,6,0.08);
+            --border-hover: rgba(3,3,6,0.16);
+            --border-active: rgba(239,49,36,0.3);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.03);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+            --shadow-xl: 0 16px 48px rgba(0,0,0,0.1);
+            --green: #30D158;
+            --blue: #007AFF;
+            --orange: #FF9F0A;
+            --purple: #AF52DE;
+            --cyan: #32ADE6;
             --radius-sm: 12px;
             --radius-md: 16px;
             --radius-lg: 24px;
@@ -41,747 +42,595 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--alfa-black);
-            color: var(--alfa-white);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         .section { padding: 100px 0; position: relative; }
-        .section--tight { padding: 80px 0; }
+        .section--alt { background: var(--bg-alt); }
 
         .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 0.02em;
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px; border-radius: 100px;
+            font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
         }
         .badge--red {
-            background: rgba(239,49,36,0.15);
-            color: var(--alfa-red);
-            border: 1px solid rgba(239,49,36,0.3);
+            background: rgba(239, 49, 36, 0.08); color: var(--alfa-red);
+            border: 1px solid rgba(239, 49, 36, 0.15);
         }
-        .badge--white {
-            background: var(--alfa-white-10);
-            color: var(--alfa-white-70);
-            border: 1px solid var(--alfa-white-10);
+        .badge--gray {
+            background: var(--bg-subtle); color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+        .badge--green {
+            background: rgba(48, 209, 88, 0.08); color: #1B9E3E;
+            border: 1px solid rgba(48, 209, 88, 0.2);
         }
 
-        /* ── NAV ── */
+        /* ═══════ NAV ═══════ */
         .nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            padding: 0 24px;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            background: rgba(11,11,11,0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--alfa-white-10);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 0 24px; height: 64px; display: flex; align-items: center;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
         }
         .nav__inner {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            max-width: 1200px; width: 100%; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
         }
         .nav__logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--alfa-white);
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: var(--text-primary);
         }
         .nav__logo-icon {
             width: 36px; height: 36px;
-            background: var(--alfa-red);
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 18px; color: white;
+            background: linear-gradient(0deg, #b1a3ff, #ff1418 80%);
+            border-radius: 50%;
+            box-shadow: inset 0 0 3px 0 #fff;
+            display: grid; place-items: center;
         }
+        .nav__logo-icon svg { width: 18px; height: 18px; fill: white; }
         .nav__logo-text { font-weight: 600; font-size: 16px; letter-spacing: -0.02em; }
-        .nav__logo-sub { font-weight: 400; color: var(--alfa-white-50); margin-left: 2px; }
+        .nav__logo-sub { font-weight: 400; color: var(--text-tertiary); margin-left: 2px; }
+        .nav__links { display: flex; align-items: center; gap: 32px; }
+        .nav__link {
+            font-size: 14px; color: var(--text-secondary); text-decoration: none;
+            transition: color 0.2s; font-weight: 500;
+        }
+        .nav__link:hover { color: var(--text-primary); }
         .nav__cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: var(--alfa-red);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 20px; background: var(--alfa-red); color: white;
+            border: none; border-radius: 10px; font-size: 14px; font-weight: 500;
+            cursor: pointer; text-decoration: none; transition: all 0.2s;
         }
         .nav__cta:hover { background: var(--alfa-red-hover); transform: translateY(-1px); }
 
-        /* ── HERO ── */
+        /* ═══════ HERO ═══════ */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding-top: 64px;
-            overflow: hidden;
+            min-height: 100vh; display: flex; align-items: center;
+            position: relative; padding-top: 64px; overflow: hidden;
+            background: var(--bg);
         }
         .hero__bg { position: absolute; inset: 0; z-index: 0; }
         .hero__bg::before {
-            content: '';
-            position: absolute;
-            top: -30%; right: -20%;
+            content: ''; position: absolute; top: -30%; right: -20%;
             width: 800px; height: 800px;
-            background: radial-gradient(circle, rgba(239,49,36,0.13) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse-glow 8s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(239,49,36,0.06) 0%, transparent 70%);
+            border-radius: 50%; animation: pulse-glow 8s ease-in-out infinite;
         }
         .hero__bg::after {
-            content: '';
-            position: absolute;
-            bottom: -20%; left: -10%;
+            content: ''; position: absolute; bottom: -20%; left: -10%;
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(239,49,36,0.07) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse-glow 10s ease-in-out infinite reverse;
+            background: radial-gradient(circle, rgba(177,163,255,0.06) 0%, transparent 70%);
+            border-radius: 50%; animation: pulse-glow 10s ease-in-out infinite reverse;
         }
         @keyframes pulse-glow {
-            0%,100% { opacity: 0.5; transform: scale(1); }
-            50%      { opacity: 1;   transform: scale(1.1); }
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
         }
         .hero__grid {
             position: absolute; inset: 0;
             background-image:
-                linear-gradient(var(--alfa-white-05) 1px, transparent 1px),
-                linear-gradient(90deg, var(--alfa-white-05) 1px, transparent 1px);
+                linear-gradient(rgba(3,3,6,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(3,3,6,0.03) 1px, transparent 1px);
             background-size: 80px 80px;
             mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
             -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
         }
-        .hero__content {
-            position: relative;
-            z-index: 1;
-            max-width: 720px;
-        }
+        .hero__content { position: relative; z-index: 1; width: 100%; }
+        .hero__top { text-align: center; max-width: 720px; margin: 0 auto 48px; }
         .hero__badge { margin-bottom: 24px; }
         .hero__title {
-            font-size: clamp(40px, 6vw, 72px);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.05;
-            margin-bottom: 24px;
+            font-size: clamp(36px, 5vw, 60px); font-weight: 800;
+            letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 20px;
+            color: var(--text-primary);
         }
         .hero__title span {
             background: linear-gradient(135deg, var(--alfa-red) 0%, #FF6B5A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
         .hero__subtitle {
-            font-size: clamp(17px, 2vw, 21px);
-            color: var(--alfa-white-70);
-            line-height: 1.65;
-            max-width: 580px;
-            margin-bottom: 40px;
-            font-weight: 400;
+            font-size: clamp(16px, 2vw, 19px); color: var(--text-secondary);
+            line-height: 1.6; margin-bottom: 36px; font-weight: 400;
         }
-        .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+        .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 16px 32px;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: all 0.25s ease;
-            white-space: nowrap;
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 10px; padding: 16px 32px; border-radius: 14px;
+            font-size: 16px; font-weight: 600; text-decoration: none;
+            cursor: pointer; border: none; transition: all 0.25s ease; white-space: nowrap;
         }
         .btn--primary {
-            background: var(--alfa-red);
-            color: white;
-            box-shadow: 0 4px 24px rgba(239,49,36,0.3);
+            background: var(--alfa-red); color: white;
+            box-shadow: 0 4px 24px rgba(239, 49, 36, 0.25);
         }
         .btn--primary:hover {
-            background: var(--alfa-red-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(239,49,36,0.4);
+            background: var(--alfa-red-hover); transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(239, 49, 36, 0.35);
         }
         .btn--outline {
-            background: transparent;
-            color: var(--alfa-white);
-            border: 1px solid var(--alfa-white-30);
+            background: transparent; color: var(--text-primary);
+            border: 1px solid var(--border-hover);
         }
         .btn--outline:hover {
-            background: var(--alfa-white-10);
-            border-color: var(--alfa-white-50);
+            background: var(--bg-subtle); border-color: var(--border-hover);
             transform: translateY(-2px);
         }
 
-        /* ── DEMO VIDEO BLOCK ── */
-        .demo-video {
-            padding: 80px 0 100px;
-            background: var(--alfa-dark);
-            border-top: 1px solid var(--alfa-white-10);
-        }
-        .demo-video__inner {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-        }
-        .demo-video__label {
-            text-align: center;
-        }
-        .demo-video__label .section-badge { margin-bottom: 12px; }
-        .demo-video__label h2 {
-            font-size: clamp(26px, 3.5vw, 40px);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 10px;
-        }
-        .demo-video__label p {
-            font-size: 16px;
-            color: var(--alfa-white-50);
-            max-width: 480px;
-            margin: 0 auto;
-            line-height: 1.6;
+        /* ═══════ SPOTLIGHT DEMO WIDGET ═══════ */
+        .spotlight-widget { max-width: 780px; margin: 0 auto; position: relative; }
+
+        .spotlight-frame {
+            background: var(--bg-alt);
+            border-radius: 20px; overflow: hidden;
+            box-shadow: var(--shadow-xl), 0 0 0 1px var(--border);
+            position: relative;
         }
 
-        /* Video placeholder */
-        .video-placeholder {
-            width: 100%;
-            max-width: 860px;
-            aspect-ratio: 16 / 9;
-            background: var(--alfa-card);
-            border: 1px solid var(--alfa-white-10);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: border-color 0.3s, box-shadow 0.3s;
+        .spotlight-topbar {
+            background: var(--bg); padding: 12px 16px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid var(--border);
         }
-        .video-placeholder:hover {
-            border-color: rgba(239,49,36,0.4);
-            box-shadow: 0 0 0 1px rgba(239,49,36,0.2), 0 24px 64px rgba(0,0,0,0.5);
-        }
-
-        /* Stripe pattern background */
-        .video-placeholder__bg {
-            position: absolute;
-            inset: 0;
-            background-image: repeating-linear-gradient(
-                -45deg,
-                transparent,
-                transparent 18px,
-                rgba(255,255,255,0.018) 18px,
-                rgba(255,255,255,0.018) 36px
-            );
-        }
-        .video-placeholder__glow {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(239,49,36,0.07) 0%, transparent 70%);
-        }
-        .video-placeholder__content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            gap: 20px;
-        }
-        .video-play-btn {
-            width: 72px; height: 72px;
-            background: var(--alfa-red);
+        .spotlight-topbar__left { display: flex; align-items: center; gap: 10px; }
+        .spotlight-topbar__logo {
+            width: 32px; height: 32px;
+            background: linear-gradient(0deg, #b1a3ff, #ff1418 80%);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 0 12px rgba(239,49,36,0.12),
-                        0 0 0 24px rgba(239,49,36,0.06);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: inset 0 0 3px 0 #fff;
+            display: grid; place-items: center;
         }
-        .video-placeholder:hover .video-play-btn {
-            transform: scale(1.08);
-            box-shadow: 0 0 0 16px rgba(239,49,36,0.15),
-                        0 0 0 32px rgba(239,49,36,0.07);
-        }
-        .video-play-btn svg {
-            width: 28px; height: 28px;
-            fill: white;
-            margin-left: 4px;
-        }
-        .video-placeholder__meta {
-            text-align: center;
-        }
-        .video-placeholder__title {
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--alfa-white-90);
-            margin-bottom: 4px;
-            letter-spacing: -0.01em;
-        }
-        .video-placeholder__duration {
-            font-size: 13px;
-            color: var(--alfa-white-30);
-        }
-        .video-placeholder__corner {
-            position: absolute;
-            top: 20px; right: 20px;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid var(--alfa-white-10);
-            border-radius: 8px;
-            padding: 5px 12px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--alfa-white-50);
-            letter-spacing: 0.05em;
+        .spotlight-topbar__logo svg { width: 16px; height: 16px; }
+        .spotlight-topbar__text {
+            font-size: 14px; font-weight: 600; color: var(--text-primary);
         }
 
-        /* ── METRICS ── */
-        .metrics {
-            background: var(--alfa-dark);
-            border-top: 1px solid var(--alfa-white-10);
-            border-bottom: 1px solid var(--alfa-white-10);
+        /* --- Search bar --- */
+        .spotlight-search {
+            background: var(--bg); border-radius: 16px;
+            margin: 12px 16px; display: flex; align-items: center;
+            height: 56px; position: relative;
+            box-shadow: var(--shadow-sm); transition: box-shadow 0.3s; cursor: text;
         }
-        .metrics__grid { display: grid; grid-template-columns: repeat(4,1fr); }
-        .metric {
-            padding: 48px 32px;
-            text-align: center;
+        .spotlight-search:hover { box-shadow: var(--shadow-md); }
+        .spotlight-search.is-active {
+            box-shadow: 0 2px 12px rgba(239,49,36,0.1), 0 0 0 2px rgba(239,49,36,0.25);
+        }
+        .spotlight-search__btn {
+            width: 56px; height: 56px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            background: none; border: none; cursor: pointer;
+            border-radius: 12px; margin-left: 4px; transition: background 0.2s;
             position: relative;
-            transition: background 0.3s;
+        }
+        .spotlight-search__btn:hover { background: var(--bg-subtle); }
+        .spotlight-search__lens {
+            width: 24px; height: 24px; position: absolute;
+            transition: opacity 0.4s, transform 0.4s;
+        }
+        .spotlight-search__lens--search { opacity: 1; transform: scale(1); fill: var(--alfa-red); }
+        .spotlight-search__lens--sparkle { opacity: 0; transform: scale(0.7) rotate(-20deg); fill: var(--alfa-red); }
+        .spotlight-search.is-active .spotlight-search__lens--search { opacity: 0; transform: scale(0.7) rotate(20deg); }
+        .spotlight-search.is-active .spotlight-search__lens--sparkle { opacity: 1; transform: scale(1) rotate(0deg); }
+
+        .spotlight-search__input-wrap {
+            flex: 1; height: 100%; display: flex; align-items: center;
+            padding-right: 16px; overflow: hidden;
+        }
+        .spotlight-search__text {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px; font-weight: 400; line-height: 20px;
+            color: var(--text-tertiary); white-space: nowrap; overflow: hidden;
+            display: flex; align-items: center;
+        }
+        .spotlight-search.is-active .spotlight-search__text { color: var(--text-primary); }
+        .spotlight-search__cursor {
+            display: inline-block; width: 2px; height: 20px;
+            background: var(--alfa-red); margin-left: 1px;
+            animation: blink-cursor 1s step-end infinite;
+            opacity: 0; flex-shrink: 0;
+        }
+        .spotlight-search.is-active .spotlight-search__cursor { opacity: 1; }
+        @keyframes blink-cursor {
+            0%, 100% { opacity: 1; } 50% { opacity: 0; }
+        }
+
+        /* --- Response area --- */
+        .spotlight-response {
+            margin: 0 16px 16px; background: var(--bg);
+            border-radius: 16px; overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            max-height: 0; opacity: 0; transform: translateY(-8px);
+            transition: max-height 0.5s ease, opacity 0.4s ease, transform 0.4s ease;
+        }
+        .spotlight-response.is-visible { max-height: 400px; opacity: 1; transform: translateY(0); }
+        .spotlight-response__header {
+            padding: 14px 16px 8px; display: flex; align-items: center; gap: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        .spotlight-response__avatar {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: linear-gradient(0deg, #b1a3ff, #ff1418 80%);
+            box-shadow: inset 0 0 2px 0 rgba(255,255,255,0.6);
+            display: grid; place-items: center; flex-shrink: 0;
+        }
+        .spotlight-response__avatar svg { width: 14px; height: 14px; }
+        .spotlight-response__name {
+            font-size: 13px; font-weight: 600; color: var(--text-primary);
+        }
+        .spotlight-response__body { padding: 14px 16px 16px; }
+        .spotlight-response__text {
+            font-size: 14px; line-height: 1.6; color: var(--text-secondary);
+        }
+        .spotlight-response__text strong { color: var(--text-primary); font-weight: 600; }
+        .spotlight-response__action {
+            display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 10px; padding: 8px 16px;
+            background: var(--alfa-red); color: white;
+            border: none; border-radius: 10px;
+            font-size: 13px; font-weight: 600; cursor: pointer;
+        }
+        .spotlight-hint { padding: 10px 16px 12px; text-align: center; }
+        .spotlight-hint__text { font-size: 11px; color: var(--text-quaternary); font-weight: 500; }
+        .spotlight-widget__label {
+            text-align: center; margin-top: 20px;
+            font-size: 13px; color: var(--text-tertiary); font-weight: 500;
+        }
+        .spotlight-widget__label span {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px; border-radius: 100px;
+            background: var(--bg-subtle); border: 1px solid var(--border);
+        }
+
+        /* ═══════ METRICS ═══════ */
+        .metrics { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .metrics__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+        .metric {
+            padding: 48px 32px; text-align: center;
+            position: relative; transition: background 0.3s;
         }
         .metric:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: 0; top: 20%; height: 60%; width: 1px;
-            background: var(--alfa-white-10);
+            content: ''; position: absolute; right: 0; top: 20%; height: 60%;
+            width: 1px; background: var(--border);
         }
-        .metric:hover { background: var(--alfa-white-05); }
+        .metric:hover { background: rgba(239,49,36,0.02); }
         .metric__value {
-            font-size: 48px;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, var(--alfa-white) 0%, var(--alfa-white-70) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 48px; font-weight: 800; letter-spacing: -0.03em;
+            line-height: 1; margin-bottom: 8px;
         }
         .metric__value span {
             background: linear-gradient(135deg, var(--alfa-red) 0%, #FF6B5A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .metric__label { font-size: 14px; color: var(--alfa-white-50); line-height: 1.5; }
+        .metric__label { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
 
-        /* ── SECTION SHARED ── */
+        /* ═══════ SECTION HEADER ═══════ */
+        .section-header { text-align: center; margin-bottom: 64px; }
         .section-badge { margin-bottom: 16px; }
         .section-title {
-            font-size: clamp(30px, 4vw, 46px);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            margin-bottom: 14px;
+            font-size: clamp(32px, 4vw, 48px); font-weight: 800;
+            letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px;
+            color: var(--text-primary);
         }
         .section-subtitle {
-            font-size: 17px;
-            color: var(--alfa-white-50);
-            max-width: 560px;
-            margin: 0 auto;
-            font-weight: 400;
-            line-height: 1.65;
-        }
-        .advantages__header { text-align: center; margin-bottom: 56px; }
-
-        /* ── GIF PLACEHOLDER ── */
-        .gif-placeholder {
-            width: 100%;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--alfa-white-10);
-            overflow: hidden;
-            position: relative;
-            background: var(--alfa-card);
-        }
-        .gif-placeholder__inner {
-            position: relative;
-            width: 100%;
-        }
-        .gif-placeholder__stripe {
-            position: absolute;
-            inset: 0;
-            background-image: repeating-linear-gradient(
-                -45deg,
-                transparent,
-                transparent 14px,
-                rgba(255,255,255,0.015) 14px,
-                rgba(255,255,255,0.015) 28px
-            );
-        }
-        .gif-placeholder__content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 32px 20px;
-        }
-        .gif-placeholder__icon {
-            width: 44px; height: 44px;
-            border-radius: 12px;
-            background: rgba(239,49,36,0.12);
-            border: 1px solid rgba(239,49,36,0.2);
-            display: flex; align-items: center; justify-content: center;
-        }
-        .gif-placeholder__icon svg {
-            width: 20px; height: 20px; fill: var(--alfa-red);
-        }
-        .gif-placeholder__text {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--alfa-white-30);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            text-align: center;
-        }
-        .gif-placeholder__tag {
-            position: absolute;
-            top: 10px; right: 10px;
-            background: rgba(239,49,36,0.15);
-            border: 1px solid rgba(239,49,36,0.25);
-            border-radius: 6px;
-            padding: 3px 8px;
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--alfa-red);
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
+            font-size: 18px; color: var(--text-secondary);
+            max-width: 600px; margin: 0 auto; font-weight: 400; line-height: 1.6;
         }
 
-        /* Screen placeholder (static image) */
-        .screen-placeholder {
-            width: 100%;
-            border-radius: var(--radius-md);
-            border: 1px dashed rgba(255,255,255,0.12);
-            background: var(--alfa-card);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 40px 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        .screen-placeholder__stripe {
-            position: absolute;
-            inset: 0;
-            background-image: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 20px,
-                rgba(255,255,255,0.012) 20px,
-                rgba(255,255,255,0.012) 40px
-            );
-        }
-        .screen-placeholder__icon {
-            position: relative;
-            z-index: 1;
-            width: 48px; height: 48px;
-            border-radius: 14px;
-            background: var(--alfa-white-05);
-            border: 1px solid var(--alfa-white-10);
-            display: flex; align-items: center; justify-content: center;
-        }
-        .screen-placeholder__icon svg {
-            width: 22px; height: 22px;
-            fill: var(--alfa-white-30);
-        }
-        .screen-placeholder__text {
-            position: relative;
-            z-index: 1;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--alfa-white-20);
-            text-align: center;
-            letter-spacing: 0.04em;
-        }
-        .screen-placeholder__label {
-            position: absolute;
-            bottom: 10px; left: 12px;
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--alfa-white-20);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        /* ── ADVANTAGES ── */
-        .advantages__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-        .advantage-card {
-            background: var(--alfa-card);
-            border: 1px solid var(--alfa-white-10);
-            border-radius: var(--radius-lg);
-            padding: 32px 26px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .advantage-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--alfa-red), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .advantage-card:hover {
-            border-color: var(--alfa-white-30);
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(0,0,0,0.3);
-        }
-        .advantage-card:hover::before { opacity: 1; }
-        .advantage-card__metric {
-            font-size: 36px;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1;
-            margin-bottom: 12px;
-        }
-        .advantage-card__metric--red   { color: var(--alfa-red); }
-        .advantage-card__metric--green { color: var(--alfa-green); }
-        .advantage-card__metric--blue  { color: var(--alfa-blue); }
-        .advantage-card__metric--orange{ color: var(--alfa-orange); }
-        .advantage-card__metric--white { color: var(--alfa-white); }
-        .advantage-card__title {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: -0.01em;
-        }
-        .advantage-card__text {
-            font-size: 14px;
-            color: var(--alfa-white-50);
-            line-height: 1.65;
-        }
-        .advantage-card__visual {
-            margin-top: 24px;
-        }
-
-        /* ── SCENARIOS ── */
-        .scenarios { background: var(--alfa-dark); }
-        .scenarios__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 56px; }
+        /* ═══════ SCENARIOS ═══════ */
+        .scenarios__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
         .scenario-card {
-            background: var(--alfa-card);
-            border: 1px solid var(--alfa-white-10);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); overflow: hidden; transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
         }
         .scenario-card:hover {
-            border-color: rgba(255,255,255,0.2);
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+            border-color: var(--border-hover); transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
         .scenario-card__header {
-            padding: 22px 22px 14px;
-            display: flex; align-items: center; gap: 12px;
+            padding: 24px 24px 0; display: flex; align-items: center; gap: 12px;
         }
-        .scenario-card__product {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--alfa-white-50);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
+        .scenario-card__icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
-        .scenario-card__visual {
-            padding: 0 14px 14px;
+        .scenario-card__icon svg {
+            width: 20px; height: 20px; fill: none;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
         }
-        .scenario-card__before {
-            padding: 14px 22px 20px;
-            border-top: 1px solid var(--alfa-white-05);
-            margin-top: auto;
+        .scenario-card__product { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+        .scenario-card__body { padding: 16px 24px 20px; }
+        .scenario-card__query {
+            background: var(--bg-alt); border: 1px solid var(--border);
+            border-radius: 12px; padding: 12px 16px; margin-bottom: 12px;
         }
-        .scenario-card__before-label {
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--alfa-white-30);
-            text-transform: uppercase;
-            letter-spacing: 0.09em;
-            margin-bottom: 4px;
+        .scenario-card__query-label {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--text-tertiary); margin-bottom: 4px;
         }
-        .scenario-card__before-text {
-            font-size: 12px;
-            color: rgba(255,255,255,0.28);
-            line-height: 1.5;
+        .scenario-card__query-text { font-size: 14px; color: var(--text-secondary); font-style: italic; }
+        .scenario-card__response { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+        .scenario-card__response strong { color: var(--text-primary); font-weight: 600; }
+        .scenario-card__media { padding: 0 16px 16px; }
+        .scenario-card__video-wrap {
+            width: 100%; border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border); background: var(--bg-alt);
         }
+        .scenario-card__video-wrap video {
+            width: 100%; display: block; border-radius: 11px;
+        }
+        .scenario-card__footer {
+            padding: 12px 24px 16px; border-top: 1px solid var(--border);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .scenario-card__footer-icon { font-size: 12px; }
+        .scenario-card__footer-text { font-size: 12px; color: var(--text-tertiary); }
 
-        /* ── EFFORT ── */
-        .effort__layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-        .effort__left { position: sticky; top: 100px; }
-        .effort__right { display: flex; flex-direction: column; gap: 12px; }
-        .effort-item {
-            background: var(--alfa-card);
-            border: 1px solid var(--alfa-white-10);
-            border-radius: var(--radius-md);
-            padding: 22px;
-            display: flex; align-items: flex-start; gap: 16px;
-            transition: all 0.3s;
+        /* ═══════ DEMO ═══════ */
+        .demo__video-wrap {
+            margin-bottom: 48px; border-radius: var(--radius-lg); overflow: hidden;
+            border: 1px solid var(--border); box-shadow: var(--shadow-lg);
+            background: #000;
         }
-        .effort-item:hover { border-color: var(--alfa-white-20); background: var(--alfa-card-hover); }
-        .effort-item__icon {
-            width: 44px; height: 44px;
-            border-radius: 12px;
-            background: var(--alfa-white-05);
+        .demo__video-wrap video { width: 100%; display: block; }
+        .demo__resources { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .demo-resource {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 28px 24px;
+            text-decoration: none; color: var(--text-primary);
+            transition: all 0.3s; display: flex; flex-direction: column; gap: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+        .demo-resource:hover {
+            border-color: var(--border-hover); transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .demo-resource__icon {
+            width: 48px; height: 48px; border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
         }
-        .effort-item__content { flex: 1; }
-        .effort-item__title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-        .effort-item__desc { font-size: 13px; color: var(--alfa-white-50); line-height: 1.5; }
-        .effort-item__value { font-size: 15px; font-weight: 700; color: var(--alfa-red); white-space: nowrap; }
-
-        /* ── DECISION ── */
-        .decision { background: var(--alfa-dark); }
-        .decision__card {
-            background: var(--alfa-card);
-            border: 1px solid var(--alfa-white-10);
-            border-radius: var(--radius-xl);
-            padding: 56px;
-            max-width: 800px;
-            margin: 0 auto;
+        .demo-resource__icon svg {
+            width: 22px; height: 22px; stroke-width: 1.5;
+            stroke-linecap: round; stroke-linejoin: round; fill: none;
         }
-        .decision__title {
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 36px;
-            text-align: center;
+        .demo-resource__title { font-size: 16px; font-weight: 700; }
+        .demo-resource__desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+        .demo-resource__link {
+            font-size: 13px; font-weight: 600; color: var(--alfa-red);
+            display: flex; align-items: center; gap: 6px;
         }
-        .decision__questions { display: flex; flex-direction: column; gap: 20px; }
-        .decision-q {
-            padding: 22px;
-            background: var(--alfa-white-05);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--alfa-white-05);
-        }
-        .decision-q__number {
-            display: inline-flex;
-            align-items: center; justify-content: center;
-            width: 26px; height: 26px;
-            border-radius: 8px;
-            background: var(--alfa-red);
-            color: white;
-            font-size: 12px; font-weight: 700;
-            margin-right: 10px;
-        }
-        .decision-q__text { font-size: 15px; font-weight: 600; display: inline; }
-        .decision-q__answers {
-            margin-top: 12px;
-            padding-left: 38px;
-            display: flex; flex-direction: column; gap: 6px;
-        }
-        .decision-q__answer { font-size: 14px; color: var(--alfa-white-50); display: flex; align-items: center; gap: 8px; }
-        .decision-q__answer--yes { color: var(--alfa-green); }
-        .decision-q__answer-dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: currentColor;
-            flex-shrink: 0;
+        .demo-resource__link svg {
+            width: 14px; height: 14px; stroke: var(--alfa-red);
+            fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
         }
 
-        /* ── CTA ── */
-        .cta { padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+        /* ═══════ ROADMAP ═══════ */
+        .roadmap__timeline {
+            max-width: 860px; margin: 0 auto; position: relative;
+            padding-left: 28px;
+        }
+        .roadmap__timeline::before {
+            content: ''; position: absolute; left: 15px; top: 0; bottom: 0;
+            width: 2px; background: var(--border);
+        }
+        .roadmap-step {
+            position: relative; display: flex; gap: 24px;
+            margin-bottom: 24px; padding-left: 16px;
+        }
+        .roadmap-step:last-child { margin-bottom: 0; }
+        .roadmap-step__number {
+            position: absolute; left: -28px; top: 2px;
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--bg); border: 2px solid var(--border-hover);
+            display: grid; place-items: center;
+            font-size: 12px; font-weight: 700; color: var(--text-secondary);
+            z-index: 2; transition: all 0.3s;
+        }
+        .roadmap-step--active .roadmap-step__number {
+            background: var(--alfa-red); border-color: var(--alfa-red); color: white;
+        }
+        .roadmap-step:hover .roadmap-step__number {
+            border-color: var(--alfa-red); color: var(--alfa-red);
+        }
+        .roadmap-step--active:hover .roadmap-step__number { color: white; }
+        .roadmap-step__content {
+            flex: 1; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 20px 24px;
+            transition: all 0.3s; box-shadow: var(--shadow-sm);
+        }
+        .roadmap-step:hover .roadmap-step__content {
+            border-color: var(--border-hover); box-shadow: var(--shadow-md);
+        }
+        .roadmap-step--active .roadmap-step__content {
+            border-color: var(--border-active);
+            box-shadow: 0 2px 12px rgba(239,49,36,0.06);
+        }
+        .roadmap-step__header {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 12px; margin-bottom: 8px; flex-wrap: wrap;
+        }
+        .roadmap-step__title { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+        .roadmap-step__time {
+            font-size: 12px; font-weight: 600; color: var(--alfa-red);
+            background: rgba(239,49,36,0.06); padding: 3px 10px;
+            border-radius: 100px; white-space: nowrap;
+        }
+        .roadmap-step__role {
+            font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px;
+        }
+        .roadmap-step__desc {
+            font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+        }
+
+        /* ═══════ CONTACTS TABLE ═══════ */
+        .contacts-table-wrap {
+            max-width: 800px; margin: 0 auto;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .contacts-table { width: 100%; border-collapse: collapse; }
+        .contacts-table th {
+            text-align: left; padding: 16px 24px;
+            font-size: 12px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--text-tertiary);
+            background: var(--bg-alt); border-bottom: 1px solid var(--border);
+        }
+        .contacts-table td {
+            padding: 14px 24px; font-size: 14px;
+            border-bottom: 1px solid var(--border); vertical-align: top;
+        }
+        .contacts-table tr:last-child td { border-bottom: none; }
+        .contacts-table td:first-child { color: var(--text-primary); font-weight: 500; }
+        .contacts-table td:last-child { color: var(--text-secondary); }
+        .contacts-table a { color: var(--alfa-red); text-decoration: none; transition: color 0.2s; }
+        .contacts-table a:hover { color: #FF6B5A; text-decoration: underline; }
+        .contacts-note {
+            margin-top: 16px; padding: 16px 24px; max-width: 800px; margin-left: auto; margin-right: auto;
+            background: rgba(255,159,10,0.06); border: 1px solid rgba(255,159,10,0.15);
+            border-radius: var(--radius-sm);
+            font-size: 13px; color: var(--text-secondary);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .contacts-note__icon {
+            width: 20px; height: 20px; flex-shrink: 0;
+            stroke: var(--orange); fill: none; stroke-width: 1.5;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        /* ═══════ ADVANTAGES ═══════ */
+        .advantages__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .advantage-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 36px 28px;
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .advantage-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--alfa-red), transparent);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .advantage-card:hover {
+            border-color: var(--border-hover); transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .advantage-card:hover::before { opacity: 1; }
+        .advantage-card__icon {
+            width: 52px; height: 52px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+        }
+        .advantage-card__icon svg {
+            width: 24px; height: 24px; stroke-width: 1.5;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+        .advantage-card__icon--red { background: rgba(239,49,36,0.08); border: 1px solid rgba(239,49,36,0.15); }
+        .advantage-card__icon--red svg { stroke: var(--alfa-red); fill: none; }
+        .advantage-card__icon--green { background: rgba(48,209,88,0.08); border: 1px solid rgba(48,209,88,0.15); }
+        .advantage-card__icon--green svg { stroke: var(--green); fill: none; }
+        .advantage-card__icon--blue { background: rgba(0,122,255,0.08); border: 1px solid rgba(0,122,255,0.15); }
+        .advantage-card__icon--blue svg { stroke: var(--blue); fill: none; }
+        .advantage-card__icon--orange { background: rgba(255,159,10,0.08); border: 1px solid rgba(255,159,10,0.15); }
+        .advantage-card__icon--orange svg { stroke: var(--orange); fill: none; }
+        .advantage-card__icon--purple { background: rgba(175,82,222,0.08); border: 1px solid rgba(175,82,222,0.15); }
+        .advantage-card__icon--purple svg { stroke: var(--purple); fill: none; }
+        .advantage-card__icon--cyan { background: rgba(50,173,230,0.08); border: 1px solid rgba(50,173,230,0.15); }
+        .advantage-card__icon--cyan svg { stroke: var(--cyan); fill: none; }
+        .advantage-card__title { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text-primary); }
+        .advantage-card__text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* ═══════ CTA ═══════ */
+        .cta {
+            padding: 120px 0; text-align: center;
+            position: relative; overflow: hidden; background: var(--bg);
+        }
         .cta::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px; height: 400px;
-            background: radial-gradient(ellipse, rgba(239,49,36,0.1) 0%, transparent 70%);
+            content: ''; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); width: 800px; height: 400px;
+            background: radial-gradient(ellipse, rgba(239,49,36,0.05) 0%, transparent 70%);
         }
         .cta__content { position: relative; z-index: 1; }
         .cta__title {
-            font-size: clamp(30px, 4vw, 50px);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 14px;
-            line-height: 1.1;
+            font-size: clamp(32px, 4vw, 52px); font-weight: 800;
+            letter-spacing: -0.03em; margin-bottom: 16px; line-height: 1.1;
+            color: var(--text-primary);
         }
         .cta__subtitle {
-            font-size: 17px;
-            color: var(--alfa-white-50);
-            margin-bottom: 40px;
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.65;
+            font-size: 18px; color: var(--text-secondary); margin-bottom: 40px;
+            max-width: 500px; margin-left: auto; margin-right: auto;
         }
         .cta__buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-        .cta__contact { margin-top: 36px; font-size: 14px; color: var(--alfa-white-30); }
-        .cta__contact a { color: var(--alfa-white-50); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
-        .cta__contact a:hover { color: var(--alfa-white); }
+        .cta__contact { margin-top: 40px; font-size: 14px; color: var(--text-tertiary); }
+        .cta__contact a {
+            color: var(--text-secondary); text-decoration: underline;
+            text-underline-offset: 3px; transition: color 0.2s;
+        }
+        .cta__contact a:hover { color: var(--text-primary); }
 
-        /* ── FOOTER ── */
-        .footer { padding: 32px 0; border-top: 1px solid var(--alfa-white-10); }
+        /* ═══════ FOOTER ═══════ */
+        .footer { padding: 32px 0; border-top: 1px solid var(--border); background: var(--bg); }
         .footer__inner { display: flex; justify-content: space-between; align-items: center; }
-        .footer__copy { font-size: 13px; color: var(--alfa-white-30); }
+        .footer__copy { font-size: 13px; color: var(--text-tertiary); }
         .footer__links { display: flex; gap: 24px; }
-        .footer__link { font-size: 13px; color: var(--alfa-white-30); text-decoration: none; transition: color 0.2s; }
-        .footer__link:hover { color: var(--alfa-white-70); }
+        .footer__link {
+            font-size: 13px; color: var(--text-tertiary);
+            text-decoration: none; transition: color 0.2s;
+        }
+        .footer__link:hover { color: var(--text-primary); }
 
-        /* ── RESPONSIVE ── */
+        /* ═══════ RESPONSIVE ═══════ */
         @media (max-width: 960px) {
-            .metrics__grid { grid-template-columns: repeat(2,1fr); }
+            .metrics__grid { grid-template-columns: repeat(2, 1fr); }
             .metric::after { display: none; }
-            .advantages__grid, .scenarios__grid { grid-template-columns: 1fr 1fr; }
-            .effort__layout { grid-template-columns: 1fr; }
-            .effort__left { position: static; }
+            .advantages__grid { grid-template-columns: 1fr 1fr; }
+            .scenarios__grid { grid-template-columns: 1fr; }
+            .demo__resources { grid-template-columns: 1fr 1fr; }
+            .nav__links { display: none; }
         }
         @media (max-width: 640px) {
             .section { padding: 64px 0; }
-            .metrics__grid, .advantages__grid, .scenarios__grid { grid-template-columns: 1fr; }
+            .metrics__grid, .advantages__grid, .demo__resources { grid-template-columns: 1fr; }
             .metric { padding: 32px 24px; }
             .metric__value { font-size: 36px; }
-            .decision__card { padding: 28px 18px; }
             .hero__actions { flex-direction: column; }
             .btn { width: 100%; justify-content: center; }
             .footer__inner { flex-direction: column; gap: 16px; text-align: center; }
-            .demo-video { padding: 60px 0 72px; }
+            .roadmap-step__header { flex-direction: column; align-items: flex-start; }
         }
 
-        /* ── ANIMATIONS ── */
+        /* ═══════ ANIMATIONS ═══════ */
         .fade-up {
-            opacity: 0;
-            transform: translateY(28px);
+            opacity: 0; transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -789,83 +638,110 @@
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
+<!-- ═══════════════ NAV ═══════════════ -->
 <nav class="nav">
     <div class="nav__inner">
         <a href="#" class="nav__logo">
-            <div class="nav__logo-icon">α</div>
-            <div class="nav__logo-text">Альфа-Бизнес <span class="nav__logo-sub">· Нейропомощник</span></div>
+            <div class="nav__logo-icon">
+                <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M11.623 17.133C10.643 13.363 7.724 10.522 4 9.5v-.742C7.724 7.736 10.643 4.77 11.623 1h.754c.98 3.77 3.899 6.736 7.623 7.758V9.5c-3.724 1.022-6.643 3.864-7.623 7.633h-.754Zm7.65 2.934H4.727V23h14.546v-2.933Z"/></svg>
+            </div>
+            <div class="nav__logo-text">Альфа-Бизнес <span class="nav__logo-sub">/ Нейропомощник</span></div>
         </a>
-        <a href="#connect" class="nav__cta">Подключить продукт →</a>
+        <div class="nav__links">
+            <a href="#scenarios" class="nav__link">Сценарии</a>
+            <a href="#demo" class="nav__link">Демо</a>
+            <a href="#roadmap" class="nav__link">Подключение</a>
+            <a href="#contacts" class="nav__link">Контакты</a>
+            <a href="#why" class="nav__link">Бенефиты</a>
+        </div>
+        <a href="#roadmap" class="nav__cta">Подключить продукт</a>
     </div>
 </nav>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-    <div class="hero__bg">
-        <div class="hero__grid"></div>
-    </div>
-    <div class="container" style="position:relative; z-index:1;">
-        <div class="hero__content">
-            <div class="hero__badge">
-                <span class="badge badge--red">AI-платформа для ваших продуктов</span>
-            </div>
-            <h1 class="hero__title">
-                Ваш продукт —<br>навык <span>Нейропомощника</span>
-            </h1>
-            <p class="hero__subtitle">
-                Нейропомощник — AI-ассистент в интернет-банке для юрлиц.
-                Подключите свой продукт, и клиенты смогут работать с ним
-                на естественном языке прямо в чате.
-            </p>
-            <div class="hero__actions">
-                <a href="#connect" class="btn btn--primary">
-                    Подключить за 1 спринт
-                </a>
-                <a href="#demo" class="btn btn--outline">
-                    Смотреть демо · 3 мин
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ DEMO VIDEO ═══ -->
-<section class="demo-video" id="demo">
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="about">
+    <div class="hero__bg"><div class="hero__grid"></div></div>
     <div class="container">
-        <div class="demo-video__inner">
-            <div class="demo-video__label fade-up">
-                <div class="section-badge">
-                    <span class="badge badge--white">Демо · 3 минуты</span>
-                </div>
-                <h2>Посмотрите, как это работает</h2>
-                <p>Клиент пишет запрос — Нейропомощник вызывает ваш API и отвечает на понятном языке</p>
+        <div class="hero__content">
+
+            <div class="hero__top">
+                <!-- <div class="hero__badge">
+                    <span class="badge badge--red">Spotlight — AI-платформа для бизнеса</span>
+                </div> -->
+                <h1 class="hero__title">
+                    Ваш продукт —<br>навык <span>Нейропомощника</span>
+                </h1>
+                <p class="hero__subtitle">
+                    Клиент вводит запрос в&nbsp;строку Spotlight прямо в&nbsp;интернет-банке —
+                    AI понимает, находит нужный продукт и&nbsp;выполняет действие.
+                </p>
             </div>
 
-            <!-- VIDEO PLACEHOLDER -->
-            <div class="video-placeholder fade-up" style="transition-delay:0.1s;" id="demo">
-                <div class="video-placeholder__bg"></div>
-                <div class="video-placeholder__glow"></div>
-                <div class="video-placeholder__content">
-                    <div class="video-play-btn">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 5v14l11-7L8 5z"/>
-                        </svg>
+            <!-- ── SPOTLIGHT WIDGET ── -->
+            <div class="spotlight-widget fade-up">
+                <div class="spotlight-frame" id="spotlightFrame">
+                    <div class="spotlight-topbar">
+                        <div class="spotlight-topbar__left"></div>
+                        <div class="spotlight-topbar__left">
+                            <div class="spotlight-topbar__logo">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M11.623 17.133C10.643 13.363 7.724 10.522 4 9.5v-.742C7.724 7.736 10.643 4.77 11.623 1h.754c.98 3.77 3.899 6.736 7.623 7.758V9.5c-3.724 1.022-6.643 3.864-7.623 7.633h-.754Zm7.65 2.934H4.727V23h14.546v-2.933Z"/></svg>
+                            </div>
+                            <div class="spotlight-topbar__text">Нейропомощник</div>
+                        </div>
                     </div>
-                    <div class="video-placeholder__meta">
-                        <div class="video-placeholder__title">Нейропомощник Spotlight — обзор для Product Owner</div>
-                        <div class="video-placeholder__duration">3:00 · Продукт · AI · Интеграция</div>
+
+                    <div class="spotlight-search" id="spotlightSearch">
+                        <button class="spotlight-search__btn" type="button" aria-label="Spotlight">
+                            <svg class="spotlight-search__lens spotlight-search__lens--search" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.532 21.41 15.122 16 13 18.121l5.41 5.411 2.122-2.121Z" stroke="none"/>
+                                <path d="M16 12.5A6.5 6.5 0 1 1 9.5 6" stroke-width="3" fill="none" stroke="currentColor"/>
+                                <path d="M16.24 11A7.45 7.45 0 0 0 11 5.71v-.42A7.45 7.45 0 0 0 16.24 0h.52A7.45 7.45 0 0 0 22 5.29v.505c-2.56.697-4.567 2.635-5.24 5.205h-.52Z" stroke="none"/>
+                            </svg>
+                            <svg class="spotlight-search__lens spotlight-search__lens--sparkle" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.623 17.133C10.643 13.363 7.724 10.522 4 9.5v-.742C7.724 7.736 10.643 4.77 11.623 1h.754c.98 3.77 3.899 6.736 7.623 7.758V9.5c-3.724 1.022-6.643 3.864-7.623 7.633h-.754Zm7.65 2.934H4.727V23h14.546v-2.933Z"/>
+                            </svg>
+                        </button>
+                        <div class="spotlight-search__input-wrap">
+                            <div class="spotlight-search__text">
+                                <span id="typingText"></span><span class="spotlight-search__cursor"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="spotlight-response" id="spotlightResponse">
+                        <div class="spotlight-response__header">
+                            <div class="spotlight-response__avatar">
+                                <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M11.623 17.133C10.643 13.363 7.724 10.522 4 9.5v-.742C7.724 7.736 10.643 4.77 11.623 1h.754c.98 3.77 3.899 6.736 7.623 7.758V9.5c-3.724 1.022-6.643 3.864-7.623 7.633h-.754Z"/></svg>
+                            </div>
+                            <div>
+                                <div class="spotlight-response__name">Spotlight</div>
+                            </div>
+                        </div>
+                        <div class="spotlight-response__body">
+                            <div class="spotlight-response__text" id="responseText"></div>
+                        </div>
+                    </div>
+
+                    <div class="spotlight-hint">
+                        <div class="spotlight-hint__text">Нейропомощник доступен всем клиентам Альфа-Бизнес</div>
                     </div>
                 </div>
-                <div class="video-placeholder__corner">DEMO</div>
+                <div class="spotlight-widget__label">
+                    <span>↑ Так выглядит Spotlight в&nbsp;интернет-банке</span>
+                </div>
             </div>
-            <!-- /VIDEO PLACEHOLDER -->
 
+            <div style="margin-top:48px;">
+                <div class="hero__actions">
+                    <a href="#roadmap" class="btn btn--primary">Подключить свой продукт</a>
+                    <a href="#demo" class="btn btn--outline">Смотреть демо</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- ═══ METRICS ═══ -->
+<!-- ═══════════════ METRICS ═══════════════ -->
 <section class="metrics">
     <div class="container">
         <div class="metrics__grid">
@@ -883,478 +759,560 @@
             </div>
             <div class="metric fade-up" style="transition-delay:0.3s">
                 <div class="metric__value"><span>+15%</span></div>
-                <div class="metric__label">рост Retention D7<br>у пользователей Нейропомощника</div>
+                <div class="metric__label">рост Retention D7<br>пользователей Spotlight</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══ ADVANTAGES ═══ -->
-<section class="section" id="advantages">
+<!-- ═══════════════ SCENARIOS ═══════════════ -->
+<section class="section" id="scenarios">
     <div class="container">
-        <div class="advantages__header fade-up">
-            <div class="section-badge">
-                <span class="badge badge--white">Преимущества для Product Owner</span>
-            </div>
-            <h2 class="section-title">Почему стоит подключиться</h2>
-            <p class="section-subtitle">Шесть измеримых результатов, которые получает ваш продукт</p>
-        </div>
-        <div class="advantages__grid">
-
-            <!-- Card 1 -->
-            <div class="advantage-card fade-up">
-                <div class="advantage-card__metric advantage-card__metric--red">+35%</div>
-                <div class="advantage-card__title">Новый AI-канал</div>
-                <div class="advantage-card__text">
-                    Все пользователи Альфа-Бизнес получают доступ к вашему продукту
-                    через диалог с AI. Отдельный UI не нужен — Нейропомощник
-                    уже встроен в интернет-банк.
-                </div>
-                <!-- GIF PLACEHOLDER -->
-                <div class="advantage-card__visual">
-                    <div class="gif-placeholder">
-                        <div class="gif-placeholder__inner" style="height:120px;">
-                            <div class="gif-placeholder__stripe"></div>
-                            <div class="gif-placeholder__content">
-                                <div class="gif-placeholder__icon">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-                                </div>
-                                <div class="gif-placeholder__text">GIF: клиент вводит запрос в строку Нейропомощника</div>
-                            </div>
-                            <div class="gif-placeholder__tag">GIF</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /GIF PLACEHOLDER -->
-            </div>
-
-            <!-- Card 2 -->
-            <div class="advantage-card fade-up" style="transition-delay:0.08s">
-                <div class="advantage-card__metric advantage-card__metric--green">−20%</div>
-                <div class="advantage-card__title">Меньше нагрузка на поддержку</div>
-                <div class="advantage-card__text">
-                    Типовые вопросы по вашему продукту — статусы, остатки, тарифы —
-                    AI отвечает сам. Минус 20% обращений в поддержку
-                    без потери качества сервиса.
-                </div>
-                <div class="advantage-card__visual">
-                    <div class="gif-placeholder">
-                        <div class="gif-placeholder__inner" style="height:120px;">
-                            <div class="gif-placeholder__stripe"></div>
-                            <div class="gif-placeholder__content">
-                                <div class="gif-placeholder__icon">
-                                    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-                                </div>
-                                <div class="gif-placeholder__text">GIF: AI отвечает на вопрос по статусу без звонка в поддержку</div>
-                            </div>
-                            <div class="gif-placeholder__tag">GIF</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="advantage-card fade-up" style="transition-delay:0.16s">
-                <div class="advantage-card__metric advantage-card__metric--blue">3×</div>
-                <div class="advantage-card__title">Конверсия в действие</div>
-                <div class="advantage-card__text">
-                    AI подводит клиента к нужному действию в контексте разговора.
-                    Конверсия в целевое действие в 3 раза выше,
-                    чем через навигацию по меню.
-                </div>
-                <div class="advantage-card__visual">
-                    <div class="gif-placeholder">
-                        <div class="gif-placeholder__inner" style="height:120px;">
-                            <div class="gif-placeholder__stripe"></div>
-                            <div class="gif-placeholder__content">
-                                <div class="gif-placeholder__icon">
-                                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                                </div>
-                                <div class="gif-placeholder__text">GIF: кнопка «Подписать все» прямо в чате</div>
-                            </div>
-                            <div class="gif-placeholder__tag">GIF</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="advantage-card fade-up" style="transition-delay:0.24s">
-                <div class="advantage-card__metric advantage-card__metric--orange">Экстра</div>
-                <div class="advantage-card__title">Сценарии, которых не было</div>
-                <div class="advantage-card__text">
-                    Сценарии, которые раньше было невозможно реализовать в обычном UI:
-                    «Подскажи лучший вклад для моей ситуации»,
-                    «Чего не хватает по ВЭД-заявке?».
-                </div>
-                <div class="advantage-card__visual">
-                    <div class="gif-placeholder">
-                        <div class="gif-placeholder__inner" style="height:120px;">
-                            <div class="gif-placeholder__stripe"></div>
-                            <div class="gif-placeholder__content">
-                                <div class="gif-placeholder__icon">
-                                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                                </div>
-                                <div class="gif-placeholder__text">GIF: AI агрегирует данные и даёт сводку клиенту</div>
-                            </div>
-                            <div class="gif-placeholder__tag">GIF</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="advantage-card fade-up" style="transition-delay:0.32s">
-                <div class="advantage-card__metric advantage-card__metric--white">1 спринт</div>
-                <div class="advantage-card__title">Быстрое подключение</div>
-                <div class="advantage-card__text">
-                    Не нужно переписывать API. Вы оборачиваете готовые ручки
-                    в MCP-сервер по шаблону. Простой сценарий — за 1 спринт.
-                    Вся платформа уже готова.
-                </div>
-                <div class="advantage-card__visual">
-                    <!-- SCREEN PLACEHOLDER -->
-                    <div class="screen-placeholder" style="height:120px;">
-                        <div class="screen-placeholder__stripe"></div>
-                        <div class="screen-placeholder__icon">
-                            <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-                        </div>
-                        <div class="screen-placeholder__text">Скрин: структура MCP-сервера</div>
-                        <div class="screen-placeholder__label">SCREEN</div>
-                    </div>
-                    <!-- /SCREEN PLACEHOLDER -->
-                </div>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="advantage-card fade-up" style="transition-delay:0.40s">
-                <div class="advantage-card__metric advantage-card__metric--green">+15%</div>
-                <div class="advantage-card__title">Удержание клиентов</div>
-                <div class="advantage-card__text">
-                    Клиенту нужно меньше действий — он не уходит, не найдя функцию.
-                    Retention D7 выше на 15% у пользователей,
-                    работающих через Нейропомощника.
-                </div>
-                <div class="advantage-card__visual">
-                    <div class="gif-placeholder">
-                        <div class="gif-placeholder__inner" style="height:120px;">
-                            <div class="gif-placeholder__stripe"></div>
-                            <div class="gif-placeholder__content">
-                                <div class="gif-placeholder__icon">
-                                    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                                </div>
-                                <div class="gif-placeholder__text">GIF: клиент находит функцию через чат, не уходит</div>
-                            </div>
-                            <div class="gif-placeholder__tag">GIF</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ═══ SCENARIOS ═══ -->
-<section class="section scenarios" id="scenarios">
-    <div class="container">
-        <div class="advantages__header fade-up">
-            <div class="section-badge">
-                <span class="badge badge--white">Примеры сценариев</span>
-            </div>
-            <h2 class="section-title">Как это работает для клиента</h2>
-            <p class="section-subtitle">
-                Клиент пишет запрос — AI понимает, какой продукт нужен,
-                и выполняет действие
-            </p>
+        <div class="section-header fade-up">
+            <div class="section-badge"><span class="badge badge--gray">Сценарии для демо</span></div>
+            <h2 class="section-title">Как это работает для&nbsp;клиента</h2>
+            <p class="section-subtitle">Клиент пишет запрос — Spotlight понимает контекст, вызывает нужный навык и&nbsp;возвращает ответ</p>
         </div>
         <div class="scenarios__grid">
 
-            <!-- Scenario 1 -->
+            <!-- Тарифы и остатки -->
             <div class="scenario-card fade-up">
                 <div class="scenario-card__header">
-                    <div class="scenario-card__product">Лента операций</div>
-                </div>
-                <div class="scenario-card__visual">
-                    <!-- GIF PLACEHOLDER -->
-                    <div class="gif-placeholder">
-                        <div class="gif-placeholder__inner" style="height:180px;">
-                            <div class="gif-placeholder__stripe"></div>
-                            <div class="gif-placeholder__content">
-                                <div class="gif-placeholder__icon">
-                                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
-                                </div>
-                                <div class="gif-placeholder__text">GIF: запрос «Покажи операции» → список в чате → «Что на подпись?»</div>
-                            </div>
-                            <div class="gif-placeholder__tag">GIF</div>
-                        </div>
+                    <div class="scenario-card__icon" style="background:rgba(0,122,255,0.08);border:1px solid rgba(0,122,255,0.15);">
+                        <svg viewBox="0 0 24 24" style="stroke:var(--blue)"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
                     </div>
-                    <!-- /GIF PLACEHOLDER -->
+                    <div class="scenario-card__product">Тарифы и&nbsp;остатки</div>
                 </div>
-                <div class="scenario-card__before">
-                    <div class="scenario-card__before-label">Без Нейропомощника</div>
-                    <div class="scenario-card__before-text">
-                        Фильтры, пагинация, ручной поиск документов на подпись
+                <div class="scenario-card__body">
+                    <div class="scenario-card__query">
+                        <div class="scenario-card__query-label">Клиент спрашивает</div>
+                        <div class="scenario-card__query-text">«Какой у меня тариф и сколько на счёте?»</div>
                     </div>
+                    <div class="scenario-card__response">AI определяет навык → вызывает API тарифов и&nbsp;счетов → отвечает: <strong>тариф «Быстрые платежи», остаток 1&nbsp;247&nbsp;500 ₽</strong>, дата следующего списания.</div>
+                </div>
+                <div class="scenario-card__media">
+                    <div class="scenario-card__video-wrap">
+                        <video autoplay muted loop playsinline>
+                            <source src="demo/tariff.mov" type="video/quicktime">
+                            <source src="demo/tariff.mov" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="scenario-card__footer">
+                    <span class="scenario-card__footer-icon">⚡</span>
+                    <span class="scenario-card__footer-text">Без Spotlight: найти раздел «Тарифы» → открыть счёт → посмотреть детали</span>
                 </div>
             </div>
 
-            <!-- Scenario 2 -->
+            <!-- Перевод по СБП -->
             <div class="scenario-card fade-up" style="transition-delay:0.1s">
                 <div class="scenario-card__header">
-                    <div class="scenario-card__product">Депозиты</div>
+                    <div class="scenario-card__icon" style="background:rgba(48,209,88,0.08);border:1px solid rgba(48,209,88,0.15);">
+                        <svg viewBox="0 0 24 24" style="stroke:var(--green)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <div class="scenario-card__product">Перевод по&nbsp;СБП</div>
                 </div>
-                <div class="scenario-card__visual">
-                    <div class="gif-placeholder">
-                        <div class="gif-placeholder__inner" style="height:180px;">
-                            <div class="gif-placeholder__stripe"></div>
-                            <div class="gif-placeholder__content">
-                                <div class="gif-placeholder__icon">
-                                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93-2.67-1.14-5-4.43-5-7.93V7.18L12 5z"/></svg>
-                                </div>
-                                <div class="gif-placeholder__text">GIF: запрос «Какие вклады?» → сводка ставок и сроков</div>
-                            </div>
-                            <div class="gif-placeholder__tag">GIF</div>
-                        </div>
+                <div class="scenario-card__body">
+                    <div class="scenario-card__query">
+                        <div class="scenario-card__query-label">Клиент спрашивает</div>
+                        <div class="scenario-card__query-text">«Переведи 50 000 по СБП на +7 900 123-45-67»</div>
+                    </div>
+                    <div class="scenario-card__response">AI парсит сумму и&nbsp;номер → подготавливает перевод → клиент нажимает <strong>«Подтвердить»</strong> прямо в&nbsp;чате.</div>
+                </div>
+                <div class="scenario-card__media">
+                    <div class="scenario-card__video-wrap">
+                        <video autoplay muted loop playsinline>
+                            <source src="demo/sbp-transfer.mov" type="video/quicktime">
+                            <source src="demo/sbp-transfer.mov" type="video/mp4">
+                        </video>
                     </div>
                 </div>
-                <div class="scenario-card__before">
-                    <div class="scenario-card__before-label">Без Нейропомощника</div>
-                    <div class="scenario-card__before-text">
-                        Переход по нескольким экранам, ручное сравнение ставок и сроков
-                    </div>
+                <div class="scenario-card__footer">
+                    <span class="scenario-card__footer-icon">⚡</span>
+                    <span class="scenario-card__footer-text">Без Spotlight: «Платежи» → «Новый» → «СБП» → заполнить форму → подтвердить</span>
                 </div>
             </div>
 
-            <!-- Scenario 3 -->
+            <!-- Выставление счетов -->
             <div class="scenario-card fade-up" style="transition-delay:0.2s">
                 <div class="scenario-card__header">
-                    <div class="scenario-card__product">Валютный контроль (ВЭД)</div>
+                    <div class="scenario-card__icon" style="background:rgba(255,159,10,0.08);border:1px solid rgba(255,159,10,0.15);">
+                        <svg viewBox="0 0 24 24" style="stroke:var(--orange)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <div class="scenario-card__product">Выставление счетов</div>
                 </div>
-                <div class="scenario-card__visual">
-                    <div class="gif-placeholder">
-                        <div class="gif-placeholder__inner" style="height:180px;">
-                            <div class="gif-placeholder__stripe"></div>
-                            <div class="gif-placeholder__content">
-                                <div class="gif-placeholder__icon">
-                                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
-                                </div>
-                                <div class="gif-placeholder__text">GIF: запрос по заявке ВЭД → статус + список недостающих документов</div>
-                            </div>
-                            <div class="gif-placeholder__tag">GIF</div>
-                        </div>
+                <div class="scenario-card__body">
+                    <div class="scenario-card__query">
+                        <div class="scenario-card__query-label">Клиент спрашивает</div>
+                        <div class="scenario-card__query-text">«Выстави счёт ООО "Рога и Копыта" на 150 000 ₽ за консалтинг»</div>
+                    </div>
+                    <div class="scenario-card__response">AI находит контрагента → заполняет реквизиты → формирует счёт → <strong>счёт готов, подпишите</strong>.</div>
+                </div>
+                <div class="scenario-card__media">
+                    <div class="scenario-card__video-wrap">
+                        <video autoplay muted loop playsinline>
+                            <source src="demo/invoice.mov" type="video/quicktime">
+                            <source src="demo/invoice.mov" type="video/mp4">
+                        </video>
                     </div>
                 </div>
-                <div class="scenario-card__before">
-                    <div class="scenario-card__before-label">Без Нейропомощника</div>
-                    <div class="scenario-card__before-text">
-                        25-страничный документ + звонок валютному контролёру
-                    </div>
+                <div class="scenario-card__footer">
+                    <span class="scenario-card__footer-icon">⚡</span>
+                    <span class="scenario-card__footer-text">Без Spotlight: «Счета» → «Создать» → выбрать контрагента → заполнить 7 полей</span>
                 </div>
             </div>
 
-        </div>
-
-        <!-- SCREEN PLACEHOLDER: общий вид интерфейса Нейропомощника -->
-        <div class="fade-up" style="margin-top:32px; transition-delay:0.3s;">
-            <div class="screen-placeholder" style="height:220px;">
-                <div class="screen-placeholder__stripe"></div>
-                <div class="screen-placeholder__icon">
-                    <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14z"/></svg>
+            <!-- Блокировка счёта -->
+            <div class="scenario-card fade-up" style="transition-delay:0.3s">
+                <div class="scenario-card__header">
+                    <div class="scenario-card__icon" style="background:rgba(239,49,36,0.08);border:1px solid rgba(239,49,36,0.15);">
+                        <svg viewBox="0 0 24 24" style="stroke:var(--alfa-red)"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <div class="scenario-card__product">Блокировка счёта</div>
                 </div>
-                <div class="screen-placeholder__text">
-                    Скриншот: интерфейс Нейропомощника в интернет-банке Альфа Бизнес
+                <div class="scenario-card__body">
+                    <div class="scenario-card__query">
+                        <div class="scenario-card__query-label">Клиент спрашивает</div>
+                        <div class="scenario-card__query-text">«Мой счёт заблокирован, что делать?»</div>
+                    </div>
+                    <div class="scenario-card__response">AI проверяет статус → определяет причину → выдаёт <strong>пошаговую инструкцию</strong> по разблокировке с&nbsp;перечнем документов.</div>
                 </div>
-                <div class="screen-placeholder__label">SCREEN</div>
+                <div class="scenario-card__media">
+                    <div class="scenario-card__video-wrap">
+                        <video autoplay muted loop playsinline>
+                            <source src="demo/block-account.mov" type="video/quicktime">
+                            <source src="demo/block-account.mov" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="scenario-card__footer">
+                    <span class="scenario-card__footer-icon">⚡</span>
+                    <span class="scenario-card__footer-text">Без Spotlight: звонок в поддержку → ожидание → переключение на специалиста</span>
+                </div>
             </div>
         </div>
-        <!-- /SCREEN PLACEHOLDER -->
-
     </div>
 </section>
 
-<!-- ═══ EFFORT ═══ -->
-<section class="section" id="effort">
+<!-- ═══════════════ DEMO ═══════════════ -->
+<section class="section section--alt" id="demo">
     <div class="container">
-        <div class="effort__layout">
-            <div class="effort__left fade-up">
-                <div class="section-badge">
-                    <span class="badge badge--white">Стоимость подключения</span>
+        <!-- <div class="section-header fade-up">
+            <div class="section-badge"><span class="badge badge--gray">Демо и&nbsp;документация</span></div>
+            <h2 class="section-title">Посмотрите, как это устроено</h2>
+            <p class="section-subtitle">Видео-демо работы Spotlight, инструкция по&nbsp;AI&nbsp;Flow и&nbsp;полная документация для&nbsp;подключения</p>
+        </div>
+        <div class="demo__video-wrap fade-up">
+            <video controls style="width:100%;display:block;" poster="">
+                <source src="demo/spotlight-full.mov" type="video/quicktime">
+                <source src="demo/spotlight-full.mov" type="video/mp4">
+                Ваш браузер не поддерживает воспроизведение видео.
+            </video>
+        </div> -->
+        <div class="demo__resources">
+            <a href="#" class="demo-resource fade-up">
+                <div class="demo-resource__icon" style="background:rgba(0,122,255,0.08);border:1px solid rgba(0,122,255,0.15);">
+                    <svg viewBox="0 0 24 24" style="stroke:var(--blue)"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
                 </div>
-                <h2 class="section-title" style="text-align:left;">
-                    Сколько это стоит<br>вашей команде
-                </h2>
-                <p style="font-size:16px;color:var(--alfa-white-50);margin-top:16px;line-height:1.7;max-width:380px;">
-                    Вы не переписываете свой API.
-                    Вы оборачиваете его по готовому шаблону.
-                    Вся платформа — бесплатно.
-                </p>
-
-                <!-- SCREEN PLACEHOLDER: timeline -->
-                <div style="margin-top:32px;">
-                    <div class="screen-placeholder" style="height:180px;">
-                        <div class="screen-placeholder__stripe"></div>
-                        <div class="screen-placeholder__icon">
-                            <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-                        </div>
-                        <div class="screen-placeholder__text">
-                            Скрин: таймлайн — 14 дней от карточки навыка до раскатки
-                        </div>
-                        <div class="screen-placeholder__label">SCREEN</div>
-                    </div>
+                <div class="demo-resource__title">AI Flow — инструкция</div>
+                <div class="demo-resource__desc">Как создать сценарий в&nbsp;визуальном конструкторе, подключить MCP-сервер и&nbsp;протестировать.</div>
+                <div class="demo-resource__link">Смотреть инструкцию <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+            </a>
+            <a href="#" class="demo-resource fade-up" style="transition-delay:0.1s">
+                <div class="demo-resource__icon" style="background:rgba(175,82,222,0.08);border:1px solid rgba(175,82,222,0.15);">
+                    <svg viewBox="0 0 24 24" style="stroke:var(--purple)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 </div>
-                <!-- /SCREEN PLACEHOLDER -->
-            </div>
-
-            <div class="effort__right">
-                <div class="effort-item fade-up">
-                    <div class="effort-item__icon">—</div>
-                    <div class="effort-item__content">
-                        <div class="effort-item__title">Время разработки</div>
-                        <div class="effort-item__desc">Простой сценарий (1–2 API-ручки) — 1 спринт, сложный — 2</div>
-                    </div>
-                    <div class="effort-item__value">1–2 спринта</div>
+                <div class="demo-resource__title">Полная документация</div>
+                <div class="demo-resource__desc">CookBook, шаблоны MCP-серверов (Java/Python), карточка навыка, описание API-контрактов.</div>
+                <div class="demo-resource__link">Открыть Confluence <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+            </a>
+            <a href="#" class="demo-resource fade-up" style="transition-delay:0.2s">
+                <div class="demo-resource__icon" style="background:rgba(239,49,36,0.08);border:1px solid rgba(239,49,36,0.15);">
+                    <svg viewBox="0 0 24 24" style="stroke:var(--alfa-red)"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
-                <div class="effort-item fade-up" style="transition-delay:0.08s">
-                    <div class="effort-item__icon">—</div>
-                    <div class="effort-item__content">
-                        <div class="effort-item__title">Разработчик</div>
-                        <div class="effort-item__desc">Один backend (Java или Python), оборачивает ваши API в MCP-сервер</div>
-                    </div>
-                    <div class="effort-item__value">1 человек</div>
-                </div>
-                <div class="effort-item fade-up" style="transition-delay:0.16s">
-                    <div class="effort-item__icon">—</div>
-                    <div class="effort-item__content">
-                        <div class="effort-item__title">Системный аналитик</div>
-                        <div class="effort-item__desc">Определить сценарии, описать инструменты</div>
-                    </div>
-                    <div class="effort-item__value">2–3 дня</div>
-                </div>
-                <div class="effort-item fade-up" style="transition-delay:0.24s">
-                    <div class="effort-item__icon">—</div>
-                    <div class="effort-item__content">
-                        <div class="effort-item__title">Product Owner</div>
-                        <div class="effort-item__desc">Выбрать топовые сценарии, заполнить карточку навыка</div>
-                    </div>
-                    <div class="effort-item__value">1–2 дня</div>
-                </div>
-                <div class="effort-item fade-up" style="transition-delay:0.32s">
-                    <div class="effort-item__icon">—</div>
-                    <div class="effort-item__content">
-                        <div class="effort-item__title">Поддержка платформы</div>
-                        <div class="effort-item__desc">CookBook, шаблоны, чат поддержки, персональный контакт</div>
-                    </div>
-                    <div class="effort-item__value" style="color:var(--alfa-green);">Бесплатно</div>
-                </div>
-            </div>
+                <div class="demo-resource__title">О нас — команда Spotlight</div>
+                <div class="demo-resource__desc">Платформа, шаблоны, чат поддержки, персональный контакт. Помогаем от&nbsp;карточки до&nbsp;продакшена.</div>
+                <div class="demo-resource__link">Связаться с командой <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+            </a>
         </div>
     </div>
 </section>
 
-<!-- ═══ DECISION ═══ -->
-<section class="section--tight decision" id="decision">
+<!-- ═══════════════ ROADMAP ═══════════════ -->
+<section class="section" id="roadmap">
     <div class="container">
-        <div class="decision__card fade-up">
-            <div class="decision__title">Подходит ли вашему продукту?</div>
-            <div class="decision__questions">
+        <div class="section-header fade-up">
+            <div class="section-badge"><span class="badge badge--green">Хочу добавить свой продукт</span></div>
+            <h2 class="section-title">Roadmap подключения</h2>
+            <p class="section-subtitle">11 шагов от идеи до&nbsp;продакшена. Простой сценарий — 1&nbsp;спринт, сложный — 2-3.</p>
+        </div>
 
-                <div class="decision-q">
-                    <span class="decision-q__number">1</span>
-                    <span class="decision-q__text">Есть ли у вашего продукта API-ручки?</span>
-                    <div class="decision-q__answers">
-                        <div class="decision-q__answer decision-q__answer--yes">
-                            <span class="decision-q__answer-dot"></span>
-                            Да — вы можете подключиться прямо сейчас
-                        </div>
-                        <div class="decision-q__answer">
-                            <span class="decision-q__answer-dot"></span>
-                            Нет — сначала нужно API, потом подключение
-                        </div>
+        <div class="roadmap__timeline">
+
+            <div class="roadmap-step roadmap-step--active fade-up">
+                <div class="roadmap-step__number">0</div>
+                <div class="roadmap-step__content">
+                    <div class="roadmap-step__header">
+                        <div class="roadmap-step__title">Приоритизация</div>
+                        <div class="roadmap-step__time">1–3 дня</div>
+                    </div>
+                    <div class="roadmap-step__role">Ответственный: PO / Stream Lead</div>
+                    <div class="roadmap-step__desc">
+                        Выберите 1–3 сценария (например: «покажи операции», «какой тариф»),
+                        проверьте наличие API, оцените сложность, выделите 1 разработчика на 1–2 спринта
                     </div>
                 </div>
+            </div>
 
-                <div class="decision-q">
-                    <span class="decision-q__number">2</span>
-                    <span class="decision-q__text">Есть ли частотный сценарий, который клиент может выразить текстом?</span>
-                    <div class="decision-q__answers">
-                        <div class="decision-q__answer decision-q__answer--yes">
-                            <span class="decision-q__answer-dot"></span>
-                            «Покажи мои операции», «Какой тариф?», «Подпиши платёж» — подходит
-                        </div>
-                        <div class="decision-q__answer">
-                            <span class="decision-q__answer-dot"></span>
-                            Не уверены — напишите нам, поможем определить сценарии
-                        </div>
+            <div class="roadmap-step fade-up" style="transition-delay:0.06s">
+                <div class="roadmap-step__number">1</div>
+                <div class="roadmap-step__content">
+                    <div class="roadmap-step__header">
+                        <div class="roadmap-step__title">Подготовка карточки навыка</div>
+                        <div class="roadmap-step__time">1–2 дня</div>
+                    </div>
+                    <div class="roadmap-step__role">Ответственный: PO + Системный аналитик</div>
+                    <div class="roadmap-step__desc">
+                        Заполните карточку навыка (название, команда, контакты, сценарии, API-ручки),
+                        отправьте на spotlight-platform@alfaintra.net, дождитесь согласования
                     </div>
                 </div>
+            </div>
 
-                <div class="decision-q">
-                    <span class="decision-q__number">3</span>
-                    <span class="decision-q__text">Готовы выделить 1 разработчика на 1–2 спринта?</span>
-                    <div class="decision-q__answers">
-                        <div class="decision-q__answer decision-q__answer--yes">
-                            <span class="decision-q__answer-dot"></span>
-                            Да — передайте инструкцию разработчику, дальше он сделает сам
-                        </div>
-                        <div class="decision-q__answer">
-                            <span class="decision-q__answer-dot"></span>
-                            Не сейчас — поставьте в бэклог, вернитесь позже
-                        </div>
+            <div class="roadmap-step fade-up" style="transition-delay:0.12s">
+                <div class="roadmap-step__number">2</div>
+                <div class="roadmap-step__content">
+                    <div class="roadmap-step__header">
+                        <div class="roadmap-step__title">Получение доступов</div>
+                        <div class="roadmap-step__time">1–2 дня</div>
+                    </div>
+                    <div class="roadmap-step__role">Ответственный: Разработчик</div>
+                    <div class="roadmap-step__desc">
+                        Репозиторий в MCPHUB, доступ к AI Flow, тестовый client_id в Keycloak,
+                        согласование ролевой модели с ДКБ
                     </div>
                 </div>
+            </div>
 
+            <div class="roadmap-step fade-up" style="transition-delay:0.18s">
+                <div class="roadmap-step__number">3</div>
+                <div class="roadmap-step__content">
+                    <div class="roadmap-step__header">
+                        <div class="roadmap-step__title">Разработка MCP-сервера</div>
+                        <div class="roadmap-step__time">1–2 спринта</div>
+                    </div>
+                    <div class="roadmap-step__role">Ответственный: Разработчик</div>
+                    <div class="roadmap-step__desc">
+                        Инициализация проекта (Java/Python), реализация инструментов (@Tool),
+                        проброс JWT, логирование, локальное тестирование через MCP Inspector
+                    </div>
+                </div>
+            </div>
+
+            <div class="roadmap-step fade-up" style="transition-delay:0.24s">
+                <div class="roadmap-step__number">4</div>
+                <div class="roadmap-step__content">
+                    <div class="roadmap-step__header">
+                        <div class="roadmap-step__title">Публикация</div>
+                        <div class="roadmap-step__time">2–3 дня</div>
+                    </div>
+                    <div class="roadmap-step__role">Ответственный: Разработчик</div>
+                    <div class="roadmap-step__desc">
+                        Code review от платформы, AppSec-апрув, заказ сетевых доступов,
+                        деплой в test/prod через Jira (MCPHUB_DEPLOYMENT)
+                    </div>
+                </div>
+            </div>
+
+            <div class="roadmap-step fade-up" style="transition-delay:0.30s">
+                <div class="roadmap-step__number">5</div>
+                <div class="roadmap-step__content">
+                    <div class="roadmap-step__header">
+                        <div class="roadmap-step__title">Подключение к AI Flow</div>
+                        <div class="roadmap-step__time">1 день</div>
+                    </div>
+                    <div class="roadmap-step__role">Ответственный: Разработчик</div>
+                    <div class="roadmap-step__desc">
+                        Создание сценария в AI Flow, настройка MCP Tool, маппинг параметров,
+                        тестирование через встроенный чат
+                    </div>
+                </div>
+            </div>
+
+            <div class="roadmap-step fade-up" style="transition-delay:0.36s">
+                <div class="roadmap-step__number">6</div>
+                <div class="roadmap-step__content">
+                    <div class="roadmap-step__header">
+                        <div class="roadmap-step__title">Подключение к Spotlight</div>
+                        <div class="roadmap-step__time">1–2 дня</div>
+                    </div>
+                    <div class="roadmap-step__role">Ответственный: Разработчик + Команда Spotlight</div>
+                    <div class="roadmap-step__desc">
+                        Регистрация навыка в маршрутизаторе Spotlight, настройка триггеров и&nbsp;интентов,
+                        проверка корректности вызова навыка из&nbsp;UI Spotlight
+                    </div>
+                </div>
+            </div>
+
+            <div class="roadmap-step fade-up" style="transition-delay:0.42s">
+                <div class="roadmap-step__number">7</div>
+                <div class="roadmap-step__content">
+                    <div class="roadmap-step__header">
+                        <div class="roadmap-step__title">E2E-тестирование</div>
+                        <div class="roadmap-step__time">2–3 дня</div>
+                    </div>
+                    <div class="roadmap-step__role">Ответственный: Разработчик + Команда Spotlight + PO</div>
+                    <div class="roadmap-step__desc">
+                        Совместное тестирование в реальном UI Spotlight, проверка всех сценариев,
+                        устранение дефектов, поэтапная раскатка на пользователей
+                    </div>
+                </div>
+            </div>
+
+            <div class="roadmap-step fade-up" style="transition-delay:0.48s">
+                <div class="roadmap-step__number">8</div>
+                <div class="roadmap-step__content">
+                    <div class="roadmap-step__header">
+                        <div class="roadmap-step__title">Планирование релиза</div>
+                        <div class="roadmap-step__time">1–2 дня</div>
+                    </div>
+                    <div class="roadmap-step__role">Ответственный: PO + Команда Spotlight</div>
+                    <div class="roadmap-step__desc">
+                        Согласование даты релиза, подготовка release notes, определение аудитории раскатки
+                        (feature flags / % пользователей), план отката при инцидентах
+                    </div>
+                </div>
+            </div>
+
+            <div class="roadmap-step fade-up" style="transition-delay:0.54s">
+                <div class="roadmap-step__number">9</div>
+                <div class="roadmap-step__content">
+                    <div class="roadmap-step__header">
+                        <div class="roadmap-step__title">Обновление контента</div>
+                        <div class="roadmap-step__time">По необходимости</div>
+                    </div>
+                    <div class="roadmap-step__role">Ответственный: Разработчик + PO</div>
+                    <div class="roadmap-step__desc">
+                        Обновление флоу в AI Flow, доработка сценариев и&nbsp;промптов, обновление MCP-сервера
+                        (новые @Tool, изменение логики), повторное тестирование изменённых компонентов
+                    </div>
+                </div>
+            </div>
+
+            <div class="roadmap-step fade-up" style="transition-delay:0.60s">
+                <div class="roadmap-step__number">10</div>
+                <div class="roadmap-step__content">
+                    <div class="roadmap-step__header">
+                        <div class="roadmap-step__title">Пост-релизный мониторинг</div>
+                        <div class="roadmap-step__time">Постоянно</div>
+                    </div>
+                    <div class="roadmap-step__role">Ответственный: PO + Разработчик</div>
+                    <div class="roadmap-step__desc">
+                        Мониторинг метрик (обращения, конверсия, снижение нагрузки на саппорт),
+                        сбор обратной связи, планирование расширения функционала
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ CONTACTS ═══════════════ -->
+<section class="section section--alt" id="contacts">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-badge"><span class="badge badge--gray">Контакты</span></div>
+            <h2 class="section-title">Куда обращаться</h2>
+        </div>
+        <div class="contacts-table-wrap fade-up">
+            <table class="contacts-table">
+                <thead><tr><th>Вопрос</th><th>Куда обращаться</th></tr></thead>
+                <tbody>
+                    <tr><td>Согласование сценариев, карточка навыка</td><td><a href="mailto:spotlight-platform@alfaintra.net">spotlight-platform@alfaintra.net</a></td></tr>
+                    <tr><td>Репозитории, деплой MCP-серверов</td><td><a href="mailto:mcphub_support@alfaintra.net">mcphub_support@alfaintra.net</a></td></tr>
+                    <tr><td>Code review MCP-серверов</td><td>Васин Артем Г., Давидович Михаил Б.</td></tr>
+                    <tr><td>Сетевые доступы</td><td>Луцюк Павел Александрович</td></tr>
+                    <tr><td>Быстрые вопросы по интеграции</td><td>Чат «Spotlight + КП», Степин А.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="contacts-note fade-up">
+            <svg class="contacts-note__icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Все коммуникации по подключению ведите в&nbsp;одной ветке переписки или одном тикете Jira.</span>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ МОТИВАЦИЯ И БЕНЕФИТЫ (перемещён в конец) ═══════════════ -->
+<section class="section" id="why">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-badge"><span class="badge badge--gray">Зачем подключать продукт</span></div>
+            <h2 class="section-title">Мотивация и&nbsp;бенефиты</h2>
+            <p class="section-subtitle">Что получает ваша команда и&nbsp;ваши клиенты, когда продукт становится навыком Spotlight</p>
+        </div>
+        <div class="advantages__grid">
+            <div class="advantage-card fade-up">
+                <div class="advantage-card__icon advantage-card__icon--red">
+                    <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <div class="advantage-card__title">Новый AI-канал бесплатно</div>
+                <div class="advantage-card__text">Все пользователи Альфа-Бизнес получают доступ к&nbsp;вашему продукту через диалог с&nbsp;AI. Spotlight уже встроен в&nbsp;интернет-банк.</div>
+            </div>
+            <div class="advantage-card fade-up" style="transition-delay:0.08s">
+                <div class="advantage-card__icon advantage-card__icon--green">
+                    <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </div>
+                <div class="advantage-card__title">Меньше нагрузка на саппорт</div>
+                <div class="advantage-card__text">Типовые вопросы — статусы, остатки, тарифы — решает AI. Минус 20% обращений в&nbsp;поддержку без потери качества.</div>
+            </div>
+            <div class="advantage-card fade-up" style="transition-delay:0.16s">
+                <div class="advantage-card__icon advantage-card__icon--blue">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                </div>
+                <div class="advantage-card__title">Конверсия ×3</div>
+                <div class="advantage-card__text">AI подводит клиента к&nbsp;действию в&nbsp;контексте разговора. Конверсия в&nbsp;целевое действие в&nbsp;3&nbsp;раза выше, чем через навигацию.</div>
+            </div>
+            <div class="advantage-card fade-up" style="transition-delay:0.24s">
+                <div class="advantage-card__icon advantage-card__icon--orange">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                </div>
+                <div class="advantage-card__title">Экстра-сценарии</div>
+                <div class="advantage-card__text">Сценарии, невозможные в&nbsp;обычном UI: «Почему мой счёт заблокирован?», «Выстави счёт контрагенту», «Какой тариф выгоднее?»</div>
+            </div>
+            <div class="advantage-card fade-up" style="transition-delay:0.32s">
+                <div class="advantage-card__icon advantage-card__icon--purple">
+                    <svg viewBox="0 0 24 24"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                </div>
+                <div class="advantage-card__title">1 спринт, 1 разработчик</div>
+                <div class="advantage-card__text">Не нужно переписывать API. Оборачиваете готовые ручки в&nbsp;MCP-сервер по&nbsp;шаблону. Платформа берёт на&nbsp;себя LLM, роутинг и&nbsp;UI.</div>
+            </div>
+            <div class="advantage-card fade-up" style="transition-delay:0.40s">
+                <div class="advantage-card__icon advantage-card__icon--cyan">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div class="advantage-card__title">Удержание клиентов</div>
+                <div class="advantage-card__text">Клиенту нужно меньше действий — он&nbsp;не&nbsp;уходит, не&nbsp;найдя функцию. Retention D7 выше на&nbsp;15% у&nbsp;пользователей Spotlight.</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══ CTA ═══ -->
+<!-- ═══════════════ CTA ═══════════════ -->
 <section class="cta" id="connect">
     <div class="cta__content fade-up">
         <h2 class="cta__title">Готовы подключиться?</h2>
-        <p class="cta__subtitle">
-            Передайте инструкцию разработчику — всё остальное
-            он сделает сам по шаблону. Мы поможем на каждом шаге.
-        </p>
+        <p class="cta__subtitle">Передайте инструкцию разработчику — всё остальное он&nbsp;сделает по&nbsp;шаблону. Мы поможем на&nbsp;каждом шаге.</p>
         <div class="cta__buttons">
-            <a href="mailto:spotlight-platform@alfaintra.net?subject=Подключение к Spotlight" class="btn btn--primary">
-                Написать команде Нейропомощника
-            </a>
-            <a href="#demo" class="btn btn--outline">
-                Смотреть демо · 3 мин
-            </a>
+            <a href="mailto:spotlight-platform@alfaintra.net?subject=[Подключение к Spotlight]" class="btn btn--primary">Написать команде Spotlight</a>
+            <a href="#demo" class="btn btn--outline">Смотреть демо</a>
         </div>
         <div class="cta__contact">
-            Чат поддержки: <a href="#">Spotlight Platform Q&amp;A</a>
-            &nbsp;·&nbsp;
+            Чат поддержки: <a href="#">Spotlight + КП</a> &nbsp;/&nbsp;
             Почта: <a href="mailto:spotlight-platform@alfaintra.net">spotlight-platform@alfaintra.net</a>
         </div>
     </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- ═══════════════ FOOTER ═══════════════ -->
 <footer class="footer">
     <div class="container">
         <div class="footer__inner">
-            <div class="footer__copy">© 2025 АО «Альфа-Банк» · Нейропомощник Spotlight</div>
+            <div class="footer__copy">2025 АО «Альфа-Банк» / Нейропомощник Spotlight</div>
             <div class="footer__links">
                 <a href="#" class="footer__link">Документация</a>
                 <a href="#" class="footer__link">CookBook</a>
+                <a href="#" class="footer__link">AI Flow</a>
                 <a href="#" class="footer__link">Чат поддержки</a>
             </div>
         </div>
     </div>
 </footer>
 
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
 <script>
+    // ---- Fade-up observer ----
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('visible');
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ---- Spotlight typing animation ----
+    (function () {
+        const scenarios = [
+            {
+                query: 'Какой у меня тариф и сколько на счёте?',
+                response: 'У вас подключён тариф <strong>«Быстрые платежи»</strong>. Остаток на рублёвом счёте: <strong>1 247 500 ₽</strong>. Следующее списание за обслуживание — 1 июля.'
+            },
+            {
+                query: 'Переведи 50 000 по СБП на +7 900 123-45-67',
+                response: 'Подготовил перевод <strong>50 000 ₽</strong> по СБП на номер <strong>+7 900 123-45-67</strong>. Получатель — Иванов Иван. Подтвердите операцию. <br><button class="spotlight-response__action" style="pointer-events:none;margin-top:8px;">Подтвердить перевод</button>'
+            },
+            {
+                query: 'Выстави счёт ООО «Рога и Копыта» на 150 000 ₽',
+                response: 'Счёт на <strong>150 000 ₽</strong> для ООО «Рога и Копыта» сформирован. Назначение платежа: «Консалтинговые услуги». <br><button class="spotlight-response__action" style="pointer-events:none;margin-top:8px;">Подписать и отправить</button>'
+            },
+            {
+                query: 'Мой счёт заблокирован, что делать?',
+                response: 'Ваш счёт <strong>•••4072</strong> приостановлен по решению ФНС (ст. 76 НК РФ). Для разблокировки:<br>1. Оплатите задолженность по налогам<br>2. Получите решение об отмене в ФНС<br>3. Отправьте его через раздел «Документы»'
+            },
+            {
+                query: 'Покажи профиль компании',
+                response: 'ООО «Технопарк», ИНН <strong>7707123456</strong>, КПП 770701001. Генеральный директор — Петров А. В. Дата регистрации: 12.03.2019. Статус: действующая.'
+            }
+        ];
+
+        const textEl = document.getElementById('typingText');
+        const responseEl = document.getElementById('spotlightResponse');
+        const responseTextEl = document.getElementById('responseText');
+        const searchEl = document.getElementById('spotlightSearch');
+
+        let scenarioIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isPaused = false;
+
+        function type() {
+            const current = scenarios[scenarioIndex];
+
+            if (!isDeleting && !isPaused) {
+                charIndex++;
+                textEl.textContent = current.query.substring(0, charIndex);
+                if (charIndex === 1) searchEl.classList.add('is-active');
+                if (charIndex >= current.query.length) {
+                    isPaused = true;
+                    setTimeout(() => {
+                        responseTextEl.innerHTML = current.response;
+                        responseEl.classList.add('is-visible');
+                    }, 400);
+                    setTimeout(() => {
+                        isPaused = false;
+                        isDeleting = true;
+                        responseEl.classList.remove('is-visible');
+                        type();
+                    }, 4000);
+                    return;
+                }
+                setTimeout(type, 40 + Math.random() * 40);
+            } else if (isDeleting) {
+                charIndex--;
+                textEl.textContent = current.query.substring(0, charIndex);
+                if (charIndex <= 0) {
+                    isDeleting = false;
+                    searchEl.classList.remove('is-active');
+                    scenarioIndex = (scenarioIndex + 1) % scenarios.length;
+                    setTimeout(type, 800);
+                    return;
+                }
+                setTimeout(type, 20);
+            }
+        }
+
+        setTimeout(type, 1500);
+    })();
 </script>
 
 </body>
