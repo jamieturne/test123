@@ -20,8 +20,8 @@ export function Demo() {
 
         <FadeUp className="mb-12 rounded-[var(--radius-lg)] overflow-hidden border border-[var(--border)] shadow-card-lg bg-black">
           <video controls className="w-full block">
-            <source src="/demo/spotlight-full.mov" type="video/quicktime" />
-            <source src="/demo/spotlight-full.mov" type="video/mp4" />
+            <source src="/demo/sbp-transfer.mov" type="video/quicktime" />
+            <source src="/demo/sbp-transfer.mov" type="video/mp4" />
           </video>
         </FadeUp>
 

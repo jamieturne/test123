@@ -38,7 +38,7 @@ const scenarioCards = [
     title: 'Блокировка счёта',
     query: '«Мой счёт заблокирован, что делать?»',
     response: 'AI проверяет статус → определяет причину → выдаёт <strong>пошаговую инструкцию</strong> по разблокировке с\u00a0перечнем документов.',
-    video: '/demo/block-account.mov',
+    video: '/demo/sbp-transfer.mov',
     footer: 'Без Spotlight: звонок в поддержку → ожидание → переключение на специалиста',
     iconColor: 'rgba(239,49,36,0.08)',
     iconBorder: 'rgba(239,49,36,0.15)',
