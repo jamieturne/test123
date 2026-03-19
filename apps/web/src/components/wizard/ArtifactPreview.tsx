@@ -64,9 +64,9 @@ export function ArtifactPreview({ stepConfig, formData, artifacts }: Props) {
               );
             })}
 
-            {artifacts.generatedAt && (
+            {typeof artifacts.generatedAt === 'string' && (
               <div className="pt-3 border-t border-[var(--border)] text-xs text-[var(--text-tertiary)]">
-                Сгенерировано: {new Date(artifacts.generatedAt as string).toLocaleString('ru-RU')}
+                Сгенерировано: {new Date(artifacts.generatedAt).toLocaleString('ru-RU')}
               </div>
             )}
           </div>
