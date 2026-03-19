@@ -5,6 +5,8 @@ import { AuthProvider } from '@/lib/auth-context';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-inter' });
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Нейропомощник Spotlight — Альфа Бизнес',
   description: 'AI-ассистент в интернет-банке. Подключите свой продукт к Нейропомощнику.',

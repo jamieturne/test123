@@ -4,6 +4,7 @@ import session from 'express-session';
 import { authRouter } from './routes/auth';
 import { teamsRouter } from './routes/teams';
 import { onboardingsRouter } from './routes/onboardings';
+import { adminRouter } from './routes/admin';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -33,6 +34,7 @@ app.use(session({
 app.use('/api/auth', authRouter);
 app.use('/api/teams', teamsRouter);
 app.use('/api/onboardings', onboardingsRouter);
+app.use('/api/admin', adminRouter);
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });

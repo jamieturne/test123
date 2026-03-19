@@ -59,4 +59,8 @@ export const api = {
     updateStep: (id: string, step: number, data: Record<string, unknown>) =>
       request(`/api/onboardings/${id}/steps/${step}`, { method: 'PUT', body: JSON.stringify(data) }),
   },
+  admin: {
+    listSkills: () => request('/api/admin/skills'),
+    getSkill: (id: string) => request(`/api/admin/skills/${id}`),
+  },
 };
