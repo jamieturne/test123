@@ -17,7 +17,8 @@ WORKDIR /app/apps/web
 RUN pnpm build
 
 ENV NODE_ENV=production
-EXPOSE 3000
-ENV PORT=3000
+ENV PORT=8080
+ENV HOSTNAME=0.0.0.0
+EXPOSE 8080
 
-CMD ["node", ".next/standalone/apps/web/server.js"]
+CMD ["sh", "-c", "pnpm start -- -p ${PORT} -H ${HOSTNAME}"]
