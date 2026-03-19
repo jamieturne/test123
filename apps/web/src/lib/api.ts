@@ -1,7 +1,35 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+type RuntimeConfigWindow = Window & {
+  __APP_CONFIG__?: {
+    API_URL?: string;
+  };
+};
+
+function getApiUrl(): string {
+  if (typeof window !== 'undefined') {
+    const runtimeUrl = (window as RuntimeConfigWindow).__APP_CONFIG__?.API_URL;
+    if (runtimeUrl) return runtimeUrl;
+  }
+
+  const publicEnvUrl = process.env.NEXT_PUBLIC_API_URL;
+  if (publicEnvUrl) return publicEnvUrl;
+
+  if (typeof window !== 'undefined') {
+    const localHosts = new Set(['localhost', '127.0.0.1']);
+    if (localHosts.has(window.location.hostname)) {
+      return 'http://localhost:3001';
+    }
+  }
+
+  return '';
+}
 
 async function request<T>(path: string, options?: RequestInit): Promise<{ success: boolean; data?: T; error?: string }> {
-  const res = await fetch(`${API_URL}${path}`, {
+  const apiUrl = getApiUrl();
+  if (!apiUrl) {
+    throw new Error('API URL is not configured. Set API_URL (or NEXT_PUBLIC_API_URL) in web environment.');
+  }
+
+  const res = await fetch(`${apiUrl}${path}`, {
     credentials: 'include',
     headers: { 'Content-Type': 'application/json', ...options?.headers },
     ...options,

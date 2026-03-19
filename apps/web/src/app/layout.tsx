@@ -11,9 +11,16 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const runtimeApiUrl = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || '';
+
   return (
     <html lang="ru" className={inter.variable}>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__APP_CONFIG__ = ${JSON.stringify({ API_URL: runtimeApiUrl })};`,
+          }}
+        />
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

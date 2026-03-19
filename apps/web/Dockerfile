@@ -18,6 +18,7 @@ RUN pnpm build
 
 ENV NODE_ENV=production
 ENV PORT=8080
+ENV HOSTNAME=0.0.0.0
 EXPOSE 8080
 
-CMD ["sh", "-c", "npx next start -p ${PORT:-8080} -H 0.0.0.0"]
+CMD ["node", ".next/standalone/apps/web/server.js"]
