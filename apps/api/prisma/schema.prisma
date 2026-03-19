@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         String   @default("user")
+  createdAt    DateTime @default(now())
+  teams        Team[]
+}
+
+model Team {
+  id          String       @id @default(uuid())
+  name        String
+  product     String
+  description String       @default("")
+  ownerId     String
+  owner       User         @relation(fields: [ownerId], references: [id])
+  createdAt   DateTime     @default(now())
+  onboardings Onboarding[]
+}
+
+model Onboarding {
+  id          String         @id @default(uuid())
+  teamId      String
+  team        Team           @relation(fields: [teamId], references: [id])
+  currentStep Int            @default(0)
+  status      String         @default("active")
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  steps       StepProgress[]
+}
+
+model StepProgress {
+  id           String     @id @default(uuid())
+  onboardingId String
+  onboarding   Onboarding @relation(fields: [onboardingId], references: [id])
+  stepNumber   Int
+  status       String     @default("locked")
+  formData     String     @default("{}")
+  artifacts    String     @default("{}")
+  completedAt  DateTime?
+
+  @@unique([onboardingId, stepNumber])
+}
