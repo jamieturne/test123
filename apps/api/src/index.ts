@@ -7,6 +7,11 @@ import { onboardingsRouter } from './routes/onboardings';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const isProd = process.env.NODE_ENV === 'production';
+
+if (isProd) {
+  app.set('trust proxy', 1);
+}
 
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:3000',
@@ -18,8 +23,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false,
+    secure: isProd,
     httpOnly: true,
+    sameSite: isProd ? 'none' : 'lax',
     maxAge: 7 * 24 * 60 * 60 * 1000,
   },
 }));
@@ -33,5 +39,5 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`API server running on http://localhost:${PORT}`);
+  console.log(`API server running on port ${PORT}`);
 });

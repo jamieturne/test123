@@ -4,6 +4,6 @@ dist
 .turbo
 *.db
 *.db-journal
+.git
 .env
 .env.local
-.env.production
