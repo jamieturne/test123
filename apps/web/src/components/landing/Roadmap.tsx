@@ -14,12 +14,12 @@ export function Roadmap() {
           <h2 className="text-[clamp(32px,4vw,48px)] font-extrabold tracking-tight leading-[1.1] mb-4 text-[var(--text-primary)]">
             Roadmap подключения
           </h2>
-          <p className="text-lg text-[var(--text-secondary)] max-w-[600px] mx-auto leading-relaxed">
-            {ROADMAP_STEPS.length} шагов от идеи до&nbsp;продакшена. Простой сценарий — 1&nbsp;спринт, сложный — 2-3.
+          <p className="text-lg text-[var(--text-secondary)] max-w-[640px] mx-auto leading-relaxed">
+            {ROADMAP_STEPS.length} фаз от идеи до&nbsp;продакшена. Простой сценарий — 1&nbsp;спринт, сложный — 2-3.
           </p>
         </FadeUp>
 
-        <div className="max-w-[860px] mx-auto relative pl-7">
+        <div className="max-w-[900px] mx-auto relative pl-7">
           <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-[var(--border)]" />
 
           {ROADMAP_STEPS.map((step, i) => (
@@ -34,18 +34,22 @@ export function Roadmap() {
               <div className={`flex-1 bg-white border rounded-[var(--radius-md)] px-6 py-5 shadow-card transition-all group-hover:border-[var(--border-hover)] group-hover:shadow-card-md ${
                 i === 0 ? 'border-[var(--border-active)] shadow-[0_2px_12px_rgba(239,49,36,0.06)]' : 'border-[var(--border)]'
               }`}>
-                <div className="flex items-center justify-between gap-3 mb-2 flex-wrap">
-                  <span className="text-base font-bold text-[var(--text-primary)]">{step.title}</span>
+                <div className="flex items-center justify-between gap-3 mb-1 flex-wrap">
+                  <span className="text-base font-bold text-[var(--text-primary)]">
+                    Фаза {step.number}. {step.title}
+                  </span>
                   {step.timeline && (
                     <span className="text-xs font-semibold text-alfa-red bg-[rgba(239,49,36,0.06)] px-2.5 py-0.5 rounded-full whitespace-nowrap">
                       {step.timeline}
                     </span>
                   )}
                 </div>
-                {step.responsible && (
-                  <div className="text-xs text-[var(--text-tertiary)] mb-2">Ответственный: {step.responsible}</div>
+                {step.subtitle && (
+                  <div className="text-[13px] text-[var(--text-secondary)] font-medium mb-2">{step.subtitle}</div>
                 )}
-                <div className="text-sm text-[var(--text-secondary)] leading-relaxed">{step.description}</div>
+                {step.responsible && (
+                  <div className="text-xs text-[var(--text-tertiary)]">Ответственный: {step.responsible}</div>
+                )}
               </div>
             </FadeUp>
           ))}

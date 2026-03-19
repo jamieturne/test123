@@ -116,7 +116,7 @@ export default function OnboardingWizardPage() {
       <div className="mb-8">
         <div className="flex items-center justify-between text-xs text-[var(--text-tertiary)] mb-2">
           <span>Общий прогресс</span>
-          <span>{onboarding.steps.filter(s => s.status === 'completed').length} / {onboarding.steps.length} шагов</span>
+          <span>{onboarding.steps.filter(s => s.status === 'completed').length} / {onboarding.steps.length} фаз</span>
         </div>
         <div className="w-full h-2 bg-[var(--bg-alt)] rounded-full overflow-hidden border border-[var(--border)]">
           <div
@@ -131,7 +131,7 @@ export default function OnboardingWizardPage() {
         <div className="lg:w-72 flex-shrink-0">
           <div className="bg-white border border-[var(--border)] rounded-[var(--radius-lg)] shadow-card overflow-hidden sticky top-20">
             <div className="px-4 py-3 border-b border-[var(--border)] bg-[var(--bg-alt)]">
-              <span className="text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)]">Шаги подключения</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)]">Фазы подключения</span>
             </div>
             <div className="py-2">
               {ROADMAP_STEPS.map((step) => {
@@ -158,7 +158,7 @@ export default function OnboardingWizardPage() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className={`text-sm font-medium truncate ${isActive ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}>
-                        {step.title}
+                        Фаза {step.number}. {step.title}
                       </div>
                       {step.timeline && (
                         <div className="text-[11px] text-[var(--text-tertiary)]">{step.timeline}</div>
@@ -178,7 +178,7 @@ export default function OnboardingWizardPage() {
               <div className="px-6 py-5 border-b border-[var(--border)]">
                 <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
                   <h2 className="text-xl font-bold text-[var(--text-primary)]">
-                    <span className="text-alfa-red mr-2">Шаг {currentStepConfig.number}.</span>
+                    <span className="text-alfa-red mr-2">Фаза {currentStepConfig.number}.</span>
                     {currentStepConfig.title}
                   </h2>
                   {currentStepConfig.timeline && (
@@ -187,10 +187,26 @@ export default function OnboardingWizardPage() {
                     </span>
                   )}
                 </div>
+                {currentStepConfig.subtitle && (
+                  <div className="text-[13px] text-[var(--text-secondary)] font-medium mb-2">{currentStepConfig.subtitle}</div>
+                )}
                 {currentStepConfig.responsible && (
                   <div className="text-xs text-[var(--text-tertiary)] mb-2">Ответственный: {currentStepConfig.responsible}</div>
                 )}
                 <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{currentStepConfig.description}</p>
+                {currentStepConfig.details && currentStepConfig.details.length > 0 && (
+                  <details className="mt-3">
+                    <summary className="text-xs font-semibold text-alfa-red cursor-pointer hover:underline">Подробный чек-лист фазы</summary>
+                    <ul className="mt-2 space-y-1 pl-1">
+                      {currentStepConfig.details.map((d, idx) => (
+                        <li key={idx} className="text-[13px] text-[var(--text-tertiary)] leading-relaxed flex gap-2">
+                          <span className="text-[var(--text-quaternary)] mt-0.5 flex-shrink-0">•</span>
+                          <span>{d}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
               </div>
 
               <div className="p-6">
@@ -244,30 +260,36 @@ function generateArtifacts(stepNumber: number, formData: Record<string, unknown>
   switch (stepNumber) {
     case 0:
       return {
-        type: 'scenario_selection',
-        title: 'Список выбранных сценариев',
+        type: 'prioritization',
+        title: 'Решение о подключении',
         generatedAt: timestamp,
-        selectedScenarios: formData.scenarios || [],
-        customScenario: formData.customScenario || '',
-        apiChecklist: formData.apiAvailability || [],
+        scenarios: formData.scenarios,
+        selectedScenarios: formData.selectedScenarios || [],
+        complexityLevel: formData.complexityLevel,
+        apiReadiness: formData.apiReadiness || [],
       };
     case 1:
       return {
         type: 'skill_card',
         title: 'Карточка навыка',
         generatedAt: timestamp,
-        skillName: formData.skillName,
+        productName: formData.productName,
         team: formData.teamName,
-        contacts: { po: formData.contactPO, dev: formData.contactDev },
-        endpoints: formData.apiEndpoints,
-        scenarios: formData.businessScenarios,
+        contacts: {
+          po: { name: formData.poName, email: formData.poEmail },
+          techLead: { name: formData.techLeadName, email: formData.techLeadEmail },
+        },
+        scenariosTable: formData.scenariosTable,
+        clientDataFields: formData.clientDataFields,
+        plannedLaunchDate: formData.plannedLaunchDate,
+        checklist: formData.prepChecklist || [],
       };
     case 2:
       return {
         type: 'access_request',
-        title: 'Заявка на доступ',
+        title: 'Заявка на доступы',
         generatedAt: timestamp,
-        developer: { email: formData.developerEmail, name: formData.developerName },
+        developer: { name: formData.developerName, email: formData.developerEmail },
         accessStatus: formData.accessChecklist || [],
       };
     case 3:
@@ -277,8 +299,10 @@ function generateArtifacts(stepNumber: number, formData: Record<string, unknown>
         generatedAt: timestamp,
         template: formData.template,
         serviceName: formData.serviceName,
-        port: formData.port || '8080',
+        targetApiUrl: formData.targetApiUrl,
+        port: formData.port || '8081',
         tools: formData.tools,
+        toolDescriptions: formData.toolDescriptions,
         checklist: formData.devChecklist || [],
       };
     case 4:
@@ -288,48 +312,34 @@ function generateArtifacts(stepNumber: number, formData: Record<string, unknown>
         generatedAt: timestamp,
         jiraTicket: formData.jiraTicket,
         repository: formData.repoUrl,
+        version: formData.version,
         notes: formData.reviewNotes,
-        deployStatus: formData.deployChecklist || [],
+        mcpServerUrl: formData.mcpServerUrl,
+        publishStatus: formData.publishChecklist || [],
       };
     case 5:
       return {
-        type: 'scenario_config',
+        type: 'ai_flow_config',
         title: 'Конфигурация сценария AI Flow',
         generatedAt: timestamp,
         scenarioName: formData.scenarioName,
+        mcpServerUrl: formData.mcpServerUrl,
         triggers: formData.triggerPhrases,
-        mcpServer: formData.mcpServerBinding,
-        setupStatus: formData.scenarioChecklist || [],
+        paramMapping: formData.paramMapping,
+        flowStatus: formData.flowChecklist || [],
       };
     case 6:
       return {
-        type: 'test_report',
-        title: 'Отчёт о тестировании',
-        generatedAt: timestamp,
-        environment: formData.testEnvironment,
-        results: formData.testResults,
-        bugs: formData.bugs,
-        testStatus: formData.testChecklist || [],
-      };
-    case 7:
-      return {
-        type: 'release_request',
-        title: 'Заявка на релиз',
+        type: 'e2e_report',
+        title: 'Отчёт о тестировании и план раскатки',
         generatedAt: timestamp,
         releaseDate: formData.releaseDate,
         audience: formData.audience,
-        releaseNotes: formData.releaseNotes,
-        releaseStatus: formData.releaseChecklist || [],
+        testResults: formData.testResults,
+        bugs: formData.bugs,
+        e2eStatus: formData.e2eChecklist || [],
       };
-    case 8:
-      return {
-        type: 'completion_certificate',
-        title: 'Сертификат подключения к Spotlight',
-        generatedAt: timestamp,
-        message: 'Поздравляем! Ваш продукт успешно подключён к Нейропомощнику Spotlight.',
-        completionItems: formData.completionChecklist || [],
-      };
-    case 10:
+    case 7:
       return {
         type: 'monitoring_config',
         title: 'Конфигурация мониторинга',

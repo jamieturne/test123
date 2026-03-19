@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { api } from '@/lib/api';
+import { ROADMAP_STEPS } from '@spotlight/shared';
 
 type AdminStep = {
   id: string;
@@ -174,7 +175,7 @@ export default function InternalAdminSkillsPage() {
                               {step.stepNumber}
                             </span>
                             <span className="text-sm font-medium text-[var(--text-primary)]">
-                              Шаг {step.stepNumber}
+                              Фаза {step.stepNumber}. {ROADMAP_STEPS.find(r => r.number === step.stepNumber)?.title ?? ''}
                             </span>
                           </div>
                           <span
