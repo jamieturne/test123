@@ -18,11 +18,20 @@ export function Demo() {
           </p>
         </FadeUp>
 
-        <FadeUp className="mb-12 rounded-[var(--radius-lg)] overflow-hidden border border-[var(--border)] shadow-card-lg bg-black">
-          <video controls className="w-full block">
-            <source src="/demo/sbp-transfer.mov" type="video/quicktime" />
-            <source src="/demo/sbp-transfer.mov" type="video/mp4" />
-          </video>
+        <FadeUp className="mb-12 max-w-5xl mx-auto">
+          <div className="rounded-[var(--radius-lg)] overflow-hidden border border-[var(--border)] shadow-card-lg bg-black">
+            {/* 16:9 — блок демо всегда в киношной пропорции */}
+            <div className="relative w-full aspect-[16/9]">
+              <video
+                controls
+                playsInline
+                className="absolute inset-0 w-full h-full object-contain bg-black"
+              >
+                <source src="/demo/sbp-transfer.mov" type="video/quicktime" />
+                <source src="/demo/sbp-transfer.mov" type="video/mp4" />
+              </video>
+            </div>
+          </div>
         </FadeUp>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
