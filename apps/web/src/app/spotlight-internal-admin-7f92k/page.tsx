@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { AdminStepDetail, statusLabelRu } from '@/components/admin/AdminStepDetail';
 import { api } from '@/lib/api';
 import { ROADMAP_STEPS } from '@spotlight/shared';
 
@@ -189,29 +190,14 @@ export default function InternalAdminSkillsPage() {
                                     : 'bg-white text-[var(--text-tertiary)] border border-[var(--border)]'
                             }`}
                           >
-                            {step.status}
+                            {statusLabelRu(step.status)}
                           </span>
                         </summary>
 
-                        <div className="px-4 pb-4 space-y-3">
-                          <div>
-                            <div className="text-xs uppercase tracking-wider font-semibold text-[var(--text-tertiary)] mb-1">
-                              Form Data
-                            </div>
-                            <pre className="text-xs p-3 rounded-lg bg-white border border-[var(--border)] overflow-x-auto text-[var(--text-secondary)]">
-                              {JSON.stringify(step.formData, null, 2)}
-                            </pre>
-                          </div>
-
-                          <div>
-                            <div className="text-xs uppercase tracking-wider font-semibold text-[var(--text-tertiary)] mb-1">
-                              Artifacts
-                            </div>
-                            <pre className="text-xs p-3 rounded-lg bg-white border border-[var(--border)] overflow-x-auto text-[var(--text-secondary)]">
-                              {JSON.stringify(step.artifacts, null, 2)}
-                            </pre>
-                          </div>
-                        </div>
+                        <AdminStepDetail
+                          step={step}
+                          stepConfig={ROADMAP_STEPS.find((r) => r.number === step.stepNumber)}
+                        />
                       </details>
                     ))}
                   </div>
