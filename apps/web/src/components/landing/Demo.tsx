@@ -25,6 +25,7 @@ export function Demo() {
               <video
                 controls
                 playsInline
+                tabIndex={-1}
                 className="absolute inset-0 w-full h-full object-contain bg-black"
               >
                 <source src="/demo/sbp-transfer.mov" type="video/quicktime" />

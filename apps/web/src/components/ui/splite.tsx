@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect, useRef } from 'react'
 const Spline = lazy(() => import('@splinetool/react-spline'))
 
 interface SplineSceneProps {
@@ -9,18 +9,43 @@ interface SplineSceneProps {
 }
 
 export function SplineScene({ scene, className }: SplineSceneProps) {
+  const wrapRef = useRef<HTMLDivElement>(null)
+
+  // Canvas Spline попадает в tab order и при загрузке может получить фокус —
+  // браузер тогда прокручивает страницу вниз. Убираем из порядка табуляции.
+  useEffect(() => {
+    const root = wrapRef.current
+    if (!root) return
+
+    const stripCanvasTabIndex = () => {
+      root.querySelectorAll('canvas').forEach((canvas) => {
+        canvas.setAttribute('tabindex', '-1')
+        canvas.setAttribute('aria-hidden', 'true')
+      })
+    }
+
+    stripCanvasTabIndex()
+    const obs = new MutationObserver(stripCanvasTabIndex)
+    obs.observe(root, { childList: true, subtree: true })
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <Suspense
-      fallback={
-        <div className="w-full h-full flex items-center justify-center">
-          <span className="loader"></span>
-        </div>
-      }
+    <div
+      ref={wrapRef}
+      className={className}
+      tabIndex={-1}
+      style={{ outline: 'none' }}
     >
-      <Spline
-        scene={scene}
-        className={className}
-      />
-    </Suspense>
+      <Suspense
+        fallback={
+          <div className="w-full h-full flex items-center justify-center min-h-[200px]">
+            <span className="loader" />
+          </div>
+        }
+      >
+        <Spline scene={scene} className="w-full h-full" />
+      </Suspense>
+    </div>
   )
 }
