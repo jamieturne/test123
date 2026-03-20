@@ -1,5 +1,6 @@
 'use client'
 
+import type { Application } from '@splinetool/runtime'
 import { Suspense, lazy, useEffect, useRef } from 'react'
 const Spline = lazy(() => import('@splinetool/react-spline'))
 
@@ -44,7 +45,15 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
           </div>
         }
       >
-        <Spline scene={scene} className="w-full h-full" />
+        <Spline
+          scene={scene}
+          className="w-full h-full"
+          onLoad={(app: Application) => {
+            // По умолчанию события только над canvas — робот «теряет» курсор.
+            // Глобально: следим за мышью по всей странице (как в редакторе Spline).
+            app.setGlobalEvents(true)
+          }}
+        />
       </Suspense>
     </div>
   )
