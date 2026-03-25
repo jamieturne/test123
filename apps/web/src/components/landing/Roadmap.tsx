@@ -4,7 +4,7 @@ const roadmapSteps = [
   {
     number: '0',
     title: 'Выбор сценария',
-    timeline: '1-3 дня',
+    timeline: '1–3 дня',
     responsible: 'PO / Stream Lead',
     desc: 'Выберите 1-3 сценария (например: «покажи операции», «какой тариф»), проверьте наличие API',
   },
@@ -13,47 +13,59 @@ const roadmapSteps = [
     title: 'Заполнение карточки навыка',
     timeline: '10 минут',
     responsible: 'PO + Системный аналитик',
-    desc: 'Заполните карточку навыка (название, команда, контакты, сценарии, API)',
+    desc: 'Заполните',
+    linkText: 'карточку навыка',
+    link: 'https://confluence.moscow.alfaintra.net/pages/viewpage.action?pageId=3197658221',
+    descAfter: ' (название, команда, контакты, сценарии, API)',
   },
   {
     number: '2',
     title: 'Получение доступов в AI Flow',
     timeline: '1 день',
     responsible: 'Разработчик',
-    desc: 'Оформите заявку на получение доступа в AI Flow для создания сценариев',
+    desc: 'Оформите',
+    linkText: 'заявку на получение доступа в AI Flow',
+    link: 'https://confluence.moscow.alfaintra.net/pages/viewpage.action?pageId=3197665264',
+    descAfter: ' для создания сценариев',
   },
   {
     number: '3',
     title: 'Создание MCP-сервера',
-    timeline: '1-2 спринта',
+    timeline: '1–2 спринта',
     responsible: 'Разработчик',
-    desc: 'Создание MCP по шаблону (Java/Python), локальное тестирование',
+    linkText: 'Создание MCP по шаблону (Java/Python)',
+    link: 'https://confluence.moscow.alfaintra.net/pages/viewpage.action?pageId=3201237474',
+    descAfter: ', локальное тестирование',
   },
   {
     number: '4',
     title: 'Публикация на MCP Platform',
-    timeline: '2-3 дня',
+    timeline: '2–3 дня',
     responsible: 'Разработчик',
-    desc: 'Ревью от MCP платформы, деплой в test/prod через тикет в Jira',
+    linkText: 'Ревью от MCP платформы',
+    link: 'https://confluence.moscow.alfaintra.net/pages/viewpage.action?pageId=3201237459',
+    descAfter: ', деплой в test/prod через тикет в Jira',
   },
   {
     number: '5',
     title: 'Создание сценария в AI Flow',
     timeline: '1 день',
     responsible: 'Разработчик',
-    desc: 'Создание сценария в AI Flow, настройка MCP, тестирование бизнес сценариев',
+    linkText: 'Создание сценария в AI Flow',
+    link: 'https://confluence.moscow.alfaintra.net/pages/viewpage.action?pageId=3201239119',
+    descAfter: ', настройка MCP, тестирование бизнес сценариев',
   },
   {
     number: '6',
     title: 'Тестирование',
-    timeline: '2-3 дня',
+    timeline: '2–3 дня',
     responsible: 'Разработчик + Команда Spotlight + PO',
     desc: 'Тестирование на testlink, проверка сценариев, поэтапная раскатка на пользователей',
   },
   {
     number: '7',
     title: 'Релиз',
-    timeline: '1-2 дня',
+    timeline: '1–2 дня',
     responsible: 'PO + Команда Spotlight',
     desc: 'Согласование даты релиза, определение аудитории раскатки',
   },
@@ -107,8 +119,22 @@ export function Roadmap() {
                   )}
                 </div>
                 {step.responsible && (
-                  <div className="text-xs text-[var(--text-tertiary)]">Ответственный: {step.responsible}</div>
+                  <div className="text-xs text-[var(--text-tertiary)] mb-2">Ответственный: {step.responsible}</div>
                 )}
+                <div className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                  {step.desc && <span>{step.desc}</span>}
+                  {step.linkText && step.link && (
+                    <a
+                      href={step.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-alfa-red no-underline hover:text-[#FF6B5A] hover:underline transition-colors"
+                    >
+                      {step.linkText}
+                    </a>
+                  )}
+                  {step.descAfter && <span>{step.descAfter}</span>}
+                </div>
               </div>
             </FadeUp>
           ))}

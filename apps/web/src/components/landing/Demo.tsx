@@ -50,7 +50,7 @@ export function Demo() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {resources.map((item, i) => (
-            <a key={item.title} href={item.link} target="_blank" rel="noopener noreferrer">
+            <a key={item.title} href={item.link} target="_blank" rel="noopener noreferrer" className="h-full">
               <FadeUp delay={i * 0.1} className="h-full bg-white border border-[var(--border)] rounded-[var(--radius-md)] p-7 no-underline text-[var(--text-primary)] shadow-card hover:border-[var(--border-hover)] hover:-translate-y-1 hover:shadow-card-lg transition-all flex flex-col gap-4 cursor-pointer">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: item.bg, border: `1px solid ${item.border}` }}>
                 <svg width={22} height={22} viewBox="0 0 24 24" fill="none" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" style={{ stroke: item.color }}>
@@ -60,8 +60,8 @@ export function Demo() {
               </div>
               <div className="text-base font-bold">{item.title}</div>
               <div className="text-[13px] text-[var(--text-secondary)] leading-relaxed">{item.desc}</div>
-              <div className="text-[13px] font-semibold text-alfa-red flex items-center gap-1.5">
-                {item.link}
+              <div className="mt-auto text-[13px] font-semibold text-alfa-red flex items-center gap-1.5">
+                {item.linkLabel}
                 <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
                 </svg>

@@ -1,11 +1,11 @@
 import { FadeUp } from './FadeUp';
 
 const slides = [
-  { title: 'Spotlight - слайд 1', subtitle: 'Витрина возможностей Spotlight' },
-  { title: 'Spotlight - слайд 2', subtitle: 'Пользовательские сценарии в АБ и АБМ' },
-  { title: 'Spotlight - слайд 3', subtitle: 'Путь подключения продукта' },
-  { title: 'Spotlight - слайд 4', subtitle: 'Интеграция через AI Flow и MCP' },
-  { title: 'Spotlight - слайд 5', subtitle: 'Контакты и поддержка команды' },
+  { title: 'Spotlight - слайд 1', src: '/images/1.png' },
+  { title: 'Spotlight - слайд 2', src: '/images/2.png' },
+  { title: 'Spotlight - слайд 3', src: '/images/3.png' },
+  { title: 'Spotlight - слайд 4', src: '/images/4.png' },
+  { title: 'Spotlight - слайд 5', src: '/images/5.png' },
 ];
 
 export function Benefits() {
@@ -29,10 +29,7 @@ export function Benefits() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           {slides.map((slide, i) => (
             <FadeUp key={slide.title} delay={i * 0.08} className="rounded-[var(--radius-lg)] overflow-hidden shadow-card border border-[var(--border)]">
-              <div className="aspect-[16/9] p-6 flex flex-col justify-end bg-gradient-to-br from-[#ffe9e7] via-[#f7f7fb] to-[#ecebff]">
-                <div className="text-base font-bold text-[var(--text-primary)]">{slide.title}</div>
-                <div className="text-sm text-[var(--text-secondary)] mt-2">{slide.subtitle}</div>
-              </div>
+              <img src={slide.src} alt={slide.title} className="w-full aspect-[16/9] object-cover block" />
             </FadeUp>
           ))}
         </div>
