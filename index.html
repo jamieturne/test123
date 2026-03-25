@@ -1160,7 +1160,7 @@
 
             <!-- Tile 2: Проверка статуса операций -->
             <div class="demo-tile"
-                 data-video="demo/operations-status.mov"
+                 data-video="demo/invoice.mov"
                  data-title="Контроль и управление незавершенными операциями"
                  data-query="Какой у меня статус по операциям? Кто мне должен?"
                  data-icon="status">
@@ -1213,7 +1213,7 @@
             </div>
 
             <!-- Tile 4: Блокировка счёта -->
-            <div class="demo-tile"
+            <!-- <div class="demo-tile"
                  data-video="demo/block-account.mov"
                  data-title="Блокировка счёта"
                  data-query="Мой счёт заблокирован, что делать?"
@@ -1237,7 +1237,7 @@
                     <div class="demo-tile__title">Блокировка счёта</div>
                     <div class="demo-tile__query">Мой счёт заблокирован, что делать?</div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>
@@ -1631,7 +1631,7 @@
             modalTitleIcon.innerHTML = tmpl.svg;
             modalQueryText.textContent = query;
 
-            // ── FIX: set src directly on <video>, not on <source> ──
+            // ── set src directly on <video>, not on <source> ──
             // Remove all existing <source> children
             while (modalVideo.firstChild) {
                 modalVideo.removeChild(modalVideo.firstChild);
