@@ -1,4 +1,4 @@
- 'use client';
+'use client';
 
 import { useEffect, useRef, useState } from 'react';
 import { FadeUp } from './FadeUp';
@@ -15,6 +15,7 @@ const AUTO_PLAY_INTERVAL = 5000;
 
 export function Benefits() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   function stopAutoPlay() {
@@ -25,6 +26,10 @@ export function Benefits() {
   }
 
   function startAutoPlay() {
+    if (isPaused) {
+      stopAutoPlay();
+      return;
+    }
     stopAutoPlay();
     autoPlayRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
@@ -49,7 +54,7 @@ export function Benefits() {
   useEffect(() => {
     startAutoPlay();
     return () => stopAutoPlay();
-  }, []);
+  }, [isPaused]);
 
   return (
     <section className="py-24 bg-white" id="why">
@@ -107,24 +112,61 @@ export function Benefits() {
               </svg>
             </button>
 
-            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
-              {slides.map((slide, index) => (
-                <button
-                  key={slide.title}
-                  type="button"
-                  aria-label={`Перейти к ${slide.title}`}
-                  onClick={() => goToSlide(index)}
-                  className={`h-2.5 border transition-all ${
-                    index === currentIndex
-                      ? 'w-7 rounded-md bg-alfa-red border-alfa-red'
-                      : 'w-2.5 rounded-full bg-white/60 border-black/10'
-                  }`}
-                />
-              ))}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 rounded-full border border-white/70 bg-white/80 px-3 py-2 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
+              <div className="flex items-center gap-1.5">
+                {slides.map((slide, index) => (
+                  <button
+                    key={slide.title}
+                    type="button"
+                    aria-label={`Перейти к ${slide.title}`}
+                    onClick={() => goToSlide(index)}
+                    className={`h-2 border transition-all ${
+                      index === currentIndex
+                        ? 'w-6 rounded-md bg-alfa-red border-alfa-red'
+                        : 'w-2 rounded-full bg-black/10 border-black/10 hover:bg-black/20'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <div className="relative h-1.5 w-24 overflow-hidden rounded-full bg-black/10">
+                {!isPaused && (
+                  <div
+                    key={currentIndex}
+                    className="absolute inset-y-0 left-0 rounded-full bg-alfa-red"
+                    style={{ animation: `carousel-progress ${AUTO_PLAY_INTERVAL}ms linear forwards` }}
+                  />
+                )}
+              </div>
+
+              <button
+                type="button"
+                aria-label={isPaused ? 'Запустить автопрокрутку' : 'Поставить автопрокрутку на паузу'}
+                onClick={() => setIsPaused((prev) => !prev)}
+                className="grid h-7 w-7 place-items-center rounded-full border border-black/10 bg-white text-[var(--text-primary)] hover:bg-[var(--bg-alt)] transition-colors"
+              >
+                {isPaused ? (
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="8,5 19,12 8,19" />
+                  </svg>
+                ) : (
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="5" width="4" height="14" />
+                    <rect x="14" y="5" width="4" height="14" />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
         </FadeUp>
       </div>
+
+      <style jsx global>{`
+        @keyframes carousel-progress {
+          from { width: 0%; }
+          to { width: 100%; }
+        }
+      `}</style>
     </section>
   );
 }
