@@ -1,5 +1,70 @@
 import { FadeUp } from './FadeUp';
-import { ROADMAP_STEPS } from '@spotlight/shared';
+
+const roadmapSteps = [
+  {
+    number: '0',
+    title: 'Выбор сценария',
+    timeline: '1-3 дня',
+    responsible: 'PO / Stream Lead',
+    desc: 'Выберите 1-3 сценария (например: «покажи операции», «какой тариф»), проверьте наличие API',
+  },
+  {
+    number: '1',
+    title: 'Заполнение карточки навыка',
+    timeline: '10 минут',
+    responsible: 'PO + Системный аналитик',
+    desc: 'Заполните карточку навыка (название, команда, контакты, сценарии, API)',
+  },
+  {
+    number: '2',
+    title: 'Получение доступов в AI Flow',
+    timeline: '1 день',
+    responsible: 'Разработчик',
+    desc: 'Оформите заявку на получение доступа в AI Flow для создания сценариев',
+  },
+  {
+    number: '3',
+    title: 'Создание MCP-сервера',
+    timeline: '1-2 спринта',
+    responsible: 'Разработчик',
+    desc: 'Создание MCP по шаблону (Java/Python), локальное тестирование',
+  },
+  {
+    number: '4',
+    title: 'Публикация на MCP Platform',
+    timeline: '2-3 дня',
+    responsible: 'Разработчик',
+    desc: 'Ревью от MCP платформы, деплой в test/prod через тикет в Jira',
+  },
+  {
+    number: '5',
+    title: 'Создание сценария в AI Flow',
+    timeline: '1 день',
+    responsible: 'Разработчик',
+    desc: 'Создание сценария в AI Flow, настройка MCP, тестирование бизнес сценариев',
+  },
+  {
+    number: '6',
+    title: 'Тестирование',
+    timeline: '2-3 дня',
+    responsible: 'Разработчик + Команда Spotlight + PO',
+    desc: 'Тестирование на testlink, проверка сценариев, поэтапная раскатка на пользователей',
+  },
+  {
+    number: '7',
+    title: 'Релиз',
+    timeline: '1-2 дня',
+    responsible: 'PO + Команда Spotlight',
+    desc: 'Согласование даты релиза, определение аудитории раскатки',
+  },
+  {
+    number: '8',
+    title: 'Вы в Spotlight!',
+    timeline: '',
+    responsible: '',
+    desc: 'Можно обновлять свой навык, базу знаний и новые услуги',
+  },
+];
 
 export function Roadmap() {
   return (
@@ -12,17 +77,14 @@ export function Roadmap() {
             </span>
           </div>
           <h2 className="text-[clamp(32px,4vw,48px)] font-extrabold tracking-tight leading-[1.1] mb-4 text-[var(--text-primary)]">
-            Roadmap подключения
+            Как подключить свой продукт
           </h2>
-          <p className="text-lg text-[var(--text-secondary)] max-w-[640px] mx-auto leading-relaxed">
-            {ROADMAP_STEPS.length} фаз от идеи до&nbsp;продакшена. Простой сценарий — 1&nbsp;спринт, сложный — 2-3.
-          </p>
         </FadeUp>
 
         <div className="max-w-[900px] mx-auto relative pl-7">
           <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-[var(--border)]" />
 
-          {ROADMAP_STEPS.map((step, i) => (
+          {roadmapSteps.map((step, i) => (
             <FadeUp key={step.number} delay={i * 0.06} className="relative flex gap-6 mb-6 last:mb-0 pl-4 group">
               <div className={`absolute -left-7 top-0.5 w-7 h-7 rounded-full grid place-items-center text-xs font-bold z-[2] transition-all border-2 ${
                 i === 0
@@ -36,7 +98,7 @@ export function Roadmap() {
               }`}>
                 <div className="flex items-center justify-between gap-3 mb-1 flex-wrap">
                   <span className="text-base font-bold text-[var(--text-primary)]">
-                    Фаза {step.number}. {step.title}
+                    {step.title}
                   </span>
                   {step.timeline && (
                     <span className="text-xs font-semibold text-alfa-red bg-[rgba(239,49,36,0.06)] px-2.5 py-0.5 rounded-full whitespace-nowrap">
@@ -44,9 +106,6 @@ export function Roadmap() {
                     </span>
                   )}
                 </div>
-                {step.subtitle && (
-                  <div className="text-[13px] text-[var(--text-secondary)] font-medium mb-2">{step.subtitle}</div>
-                )}
                 {step.responsible && (
                   <div className="text-xs text-[var(--text-tertiary)]">Ответственный: {step.responsible}</div>
                 )}

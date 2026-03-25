@@ -1,6 +1,4 @@
 'use client';
-
-import Link from 'next/link';
 import { SparkleIcon } from './SparkleIcon';
 
 export function LandingNav() {
@@ -12,22 +10,18 @@ export function LandingNav() {
             <SparkleIcon size={18} className="text-white" />
           </div>
           <div className="font-semibold text-base tracking-tight">
-            Альфа-Бизнес <span className="font-normal text-[var(--text-tertiary)] ml-0.5">/ Нейропомощник</span>
+            Альфа-Бизнес <span className="font-normal text-[var(--text-tertiary)] ml-0.5">/ Spotlight</span>
           </div>
         </a>
         <div className="hidden md:flex items-center gap-8">
-          <a href="#scenarios" className="text-sm text-[var(--text-secondary)] no-underline font-medium hover:text-[var(--text-primary)] transition-colors">Сценарии</a>
-          <a href="#demo" className="text-sm text-[var(--text-secondary)] no-underline font-medium hover:text-[var(--text-primary)] transition-colors">Демо</a>
-          <a href="#roadmap" className="text-sm text-[var(--text-secondary)] no-underline font-medium hover:text-[var(--text-primary)] transition-colors">Подключение</a>
+          <a href="#scenarios" className="text-sm text-[var(--text-secondary)] no-underline font-medium hover:text-[var(--text-primary)] transition-colors">Демо сценариев</a>
+          <a href="#roadmap" className="text-sm text-[var(--text-secondary)] no-underline font-medium hover:text-[var(--text-primary)] transition-colors">Как подключить</a>
           <a href="#contacts" className="text-sm text-[var(--text-secondary)] no-underline font-medium hover:text-[var(--text-primary)] transition-colors">Контакты</a>
-          <a href="#why" className="text-sm text-[var(--text-secondary)] no-underline font-medium hover:text-[var(--text-primary)] transition-colors">Бенефиты</a>
+          <a href="#why" className="text-sm text-[var(--text-secondary)] no-underline font-medium hover:text-[var(--text-primary)] transition-colors">Про Spotlight</a>
         </div>
-        <Link
-          href="/dashboard"
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-alfa-red text-white rounded-[10px] text-sm font-medium no-underline hover:bg-alfa-red-hover hover:-translate-y-px transition-all"
-        >
-          Личный кабинет
-        </Link>
+        <a href="#roadmap" className="inline-flex items-center gap-2 px-5 py-2.5 bg-alfa-red text-white rounded-[10px] text-sm font-medium no-underline hover:bg-alfa-red-hover hover:-translate-y-px transition-all">
+          Подключить продукт
+        </a>
       </div>
     </nav>
   );

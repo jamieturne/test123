@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { FadeUp } from './FadeUp';
 
 export function CTA() {
@@ -10,23 +9,15 @@ export function CTA() {
           Готовы подключиться?
         </h2>
         <p className="text-lg text-[var(--text-secondary)] mb-10 max-w-[500px] mx-auto">
-          Передайте инструкцию разработчику — всё остальное он&nbsp;сделает по&nbsp;шаблону. Мы поможем на&nbsp;каждом шаге.
+          Встройте свой продукт в главную строку банка. Соберите сценарии, реализуйте MCP - и ваш навык появится в Spotlight. Мы поможем на каждом шаге.
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
-          <Link
-            href="/register"
-            className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-alfa-red text-white shadow-[0_4px_24px_rgba(239,49,36,0.25)] hover:bg-alfa-red-hover hover:-translate-y-0.5 transition-all"
-          >
-            Начать подключение
-          </Link>
-          <a href="#demo" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-transparent text-[var(--text-primary)] border border-[var(--border-hover)] hover:bg-[var(--bg-subtle)] hover:-translate-y-0.5 transition-all">
-            Смотреть демо
+          <a href="mailto:spotlight-platform@alfaintra.net?subject=[Подключение к Spotlight]" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-alfa-red text-white shadow-[0_4px_24px_rgba(239,49,36,0.25)] hover:bg-alfa-red-hover hover:-translate-y-0.5 transition-all">
+            Написать команде Spotlight
           </a>
-        </div>
-        <div className="mt-10 text-sm text-[var(--text-tertiary)]">
-          Чат поддержки: <a href="#" className="text-[var(--text-secondary)] underline underline-offset-[3px] hover:text-[var(--text-primary)] transition-colors">Spotlight + КП</a>
-          {' '}/{' '}
-          Почта: <a href="mailto:spotlight-platform@alfaintra.net" className="text-[var(--text-secondary)] underline underline-offset-[3px] hover:text-[var(--text-primary)] transition-colors">spotlight-platform@alfaintra.net</a>
+          <a href="#demo" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-transparent text-[var(--text-primary)] border border-[var(--border-hover)] hover:bg-[var(--bg-subtle)] hover:-translate-y-0.5 transition-all">
+            Смотреть документацию
+          </a>
         </div>
       </FadeUp>
     </section>

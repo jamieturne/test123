@@ -33,18 +33,18 @@ export function Hero() {
           {/* Left: text content */}
           <div className="flex-1 lg:pr-8">
             <h1 className="text-[clamp(36px,5vw,60px)] font-extrabold tracking-tight leading-[1.08] mb-5 text-[var(--text-primary)]">
-              Ваш продукт —<br/>навык{' '}
-              <span className="bg-gradient-to-br from-alfa-red to-[#FF6B5A] bg-clip-text text-transparent">Нейропомощника</span>
+              <span className="bg-gradient-to-br from-alfa-red to-[#FF6B5A] bg-clip-text text-transparent">Spotlight</span> - точка сборки
+              <br />
+              всех клиентских путей
             </h1>
             <p className="text-[clamp(16px,2vw,19px)] text-[var(--text-secondary)] leading-relaxed mb-9 max-w-xl">
-              Клиент вводит запрос в&nbsp;строку Spotlight прямо в&nbsp;интернет-банке —
-              AI понимает, находит нужный продукт и&nbsp;выполняет действие.
+              Ваш продукт в центре внимания клиента в главной строке банка в АБ и АБМ
             </p>
             <div className="flex gap-4 flex-wrap">
               <a href="#roadmap" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-alfa-red text-white shadow-[0_4px_24px_rgba(239,49,36,0.25)] hover:bg-alfa-red-hover hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(239,49,36,0.35)] transition-all">
                 Подключить свой продукт
               </a>
-              <a href="#demo" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-transparent text-[var(--text-primary)] border border-[var(--border-hover)] hover:bg-[var(--bg-subtle)] hover:-translate-y-0.5 transition-all">
+              <a href="#scenarios" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-transparent text-[var(--text-primary)] border border-[var(--border-hover)] hover:bg-[var(--bg-subtle)] hover:-translate-y-0.5 transition-all">
                 Смотреть демо
               </a>
             </div>
@@ -68,7 +68,7 @@ export function Hero() {
           <a href="#roadmap" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-alfa-red text-white shadow-[0_4px_24px_rgba(239,49,36,0.25)] hover:bg-alfa-red-hover hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(239,49,36,0.35)] transition-all">
             Подключить свой продукт
           </a>
-          <a href="#demo" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-transparent text-[var(--text-primary)] border border-[var(--border-hover)] hover:bg-[var(--bg-subtle)] hover:-translate-y-0.5 transition-all">
+          <a href="#scenarios" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-transparent text-[var(--text-primary)] border border-[var(--border-hover)] hover:bg-[var(--bg-subtle)] hover:-translate-y-0.5 transition-all">
             Смотреть демо
           </a>
         </div>
