@@ -19,11 +19,6 @@ const scenarioCards = [
     query: 'Проанализируй мои расходы за месяц',
     video: '/demo/sbp-transfer.mov',
   },
-  {
-    title: 'Блокировка счёта',
-    query: 'Мой счёт заблокирован, что делать?',
-    video: '/demo/sbp-transfer.mov',
-  },
 ];
 
 export function Scenarios() {
