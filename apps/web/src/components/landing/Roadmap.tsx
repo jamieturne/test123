@@ -74,7 +74,7 @@ const roadmapSteps = [
     title: 'Вы в Spotlight!',
     timeline: '',
     responsible: '',
-    desc: 'Можно обновлять свой навык, базу знаний и новые услуги',
+    desc: 'Можно обновлять свой навык и добавлять новые',
   },
 ];
 
