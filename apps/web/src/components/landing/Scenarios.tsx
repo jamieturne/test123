@@ -41,7 +41,7 @@ export function Scenarios() {
             Кто уже работает с нами
           </h2>
           <p className="text-lg text-[var(--text-secondary)] max-w-[600px] mx-auto leading-relaxed">
-            Смотрите демо продуктов которые будут в Spotlight
+            Смотрите демо продуктов, которые будут в Spotlight
           </p>
         </FadeUp>
 

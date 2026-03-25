@@ -74,27 +74,29 @@ export function Benefits() {
         </FadeUp>
 
         <FadeUp>
-          <div
-            className="relative max-w-[1000px] mx-auto overflow-hidden rounded-[var(--radius-xl)] shadow-card-lg"
-            onMouseEnter={stopAutoPlay}
-            onMouseLeave={startAutoPlay}
-          >
+          <div className="relative max-w-[1000px] mx-auto">
             <div
-              className="flex transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              className="overflow-hidden rounded-[var(--radius-xl)] shadow-card-lg"
+              onMouseEnter={stopAutoPlay}
+              onMouseLeave={startAutoPlay}
             >
-              {slides.map((slide) => (
-                <div key={slide.title} className="w-full flex-shrink-0">
-                  <img src={slide.src} alt={slide.title} className="w-full block aspect-[16/9] object-cover" />
-                </div>
-              ))}
+              <div
+                className="flex transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              >
+                {slides.map((slide) => (
+                  <div key={slide.title} className="w-full flex-shrink-0">
+                    <img src={slide.src} alt={slide.title} className="w-full block aspect-[16/9] object-cover" />
+                  </div>
+                ))}
+              </div>
             </div>
 
             <button
               type="button"
               aria-label="Предыдущий"
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur border border-[var(--border)] grid place-items-center hover:border-alfa-red transition-colors"
+              className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/95 backdrop-blur border border-[var(--border)] grid place-items-center hover:border-alfa-red transition-colors shadow-card"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="15 18 9 12 15 6" />
@@ -105,14 +107,14 @@ export function Benefits() {
               type="button"
               aria-label="Следующий"
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur border border-[var(--border)] grid place-items-center hover:border-alfa-red transition-colors"
+              className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/95 backdrop-blur border border-[var(--border)] grid place-items-center hover:border-alfa-red transition-colors shadow-card"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </button>
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 rounded-full border border-white/70 bg-white/80 px-3 py-2 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
+            <div className="mt-4 mx-auto w-fit flex items-center gap-3 rounded-full border border-white/70 bg-white/90 px-3 py-2 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
               <div className="flex items-center gap-1.5">
                 {slides.map((slide, index) => (
                   <button
