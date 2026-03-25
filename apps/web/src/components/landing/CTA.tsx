@@ -12,7 +12,7 @@ export function CTA() {
           Встройте свой продукт в главную строку банка. Соберите сценарии, реализуйте MCP - и ваш навык появится в Spotlight. Мы поможем на каждом шаге ❤️
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
-          <a href="mailto:spotlight-platform@alfaintra.net?subject=[Подключение к Spotlight]" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-alfa-red text-white shadow-[0_4px_24px_rgba(239,49,36,0.25)] hover:bg-alfa-red-hover hover:-translate-y-0.5 transition-all">
+          <a href="https://go.rocket.chat/invite?host=rc.alfa-bank.net&path=invite%2FYvrQS9" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-alfa-red text-white shadow-[0_4px_24px_rgba(239,49,36,0.25)] hover:bg-alfa-red-hover hover:-translate-y-0.5 transition-all">
             Написать команде Spotlight
           </a>
           <a href="#demo" className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[14px] text-base font-semibold no-underline bg-transparent text-[var(--text-primary)] border border-[var(--border-hover)] hover:bg-[var(--bg-subtle)] hover:-translate-y-0.5 transition-all">
