@@ -122,7 +122,7 @@ export function Roadmap() {
                   <div className="text-xs text-[var(--text-tertiary)] mb-2">Ответственный: {step.responsible}</div>
                 )}
                 <div className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  {step.desc && <span>{step.desc}</span>}
+                  {step.desc && <span>{step.desc}{step.linkText ? ' ' : ''}</span>}
                   {step.linkText && step.link && (
                     <a
                       href={step.link}
