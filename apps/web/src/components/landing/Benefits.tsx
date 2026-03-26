@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { FadeUp } from './FadeUp';
 
 const slides = [
@@ -11,50 +11,20 @@ const slides = [
   { title: 'Spotlight - слайд 5', src: '/images/5.png' },
 ];
 
-const AUTO_PLAY_INTERVAL = 5000;
-
 export function Benefits() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  function stopAutoPlay() {
-    if (autoPlayRef.current) {
-      clearInterval(autoPlayRef.current);
-      autoPlayRef.current = null;
-    }
-  }
-
-  function startAutoPlay() {
-    if (isPaused) {
-      stopAutoPlay();
-      return;
-    }
-    stopAutoPlay();
-    autoPlayRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, AUTO_PLAY_INTERVAL);
-  }
 
   function goToSlide(index: number) {
     setCurrentIndex(index);
-    startAutoPlay();
   }
 
   function nextSlide() {
     setCurrentIndex((prev) => (prev + 1) % slides.length);
-    startAutoPlay();
   }
 
   function prevSlide() {
     setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
-    startAutoPlay();
   }
-
-  useEffect(() => {
-    startAutoPlay();
-    return () => stopAutoPlay();
-  }, [isPaused]);
 
   return (
     <section className="py-24 bg-white" id="why">
@@ -75,11 +45,7 @@ export function Benefits() {
 
         <FadeUp>
           <div className="relative max-w-[1000px] mx-auto">
-            <div
-              className="overflow-hidden rounded-[var(--radius-xl)] shadow-card-lg"
-              onMouseEnter={stopAutoPlay}
-              onMouseLeave={startAutoPlay}
-            >
+            <div className="overflow-hidden rounded-[var(--radius-xl)] shadow-card-lg">
               <div
                 className="flex transition-transform duration-500 ease-out"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -130,45 +96,10 @@ export function Benefits() {
                   />
                 ))}
               </div>
-
-              <div className="relative h-1.5 w-24 overflow-hidden rounded-full bg-black/10">
-                {!isPaused && (
-                  <div
-                    key={currentIndex}
-                    className="absolute inset-y-0 left-0 rounded-full bg-alfa-red"
-                    style={{ animation: `carousel-progress ${AUTO_PLAY_INTERVAL}ms linear forwards` }}
-                  />
-                )}
-              </div>
-
-              <button
-                type="button"
-                aria-label={isPaused ? 'Запустить автопрокрутку' : 'Поставить автопрокрутку на паузу'}
-                onClick={() => setIsPaused((prev) => !prev)}
-                className="grid h-7 w-7 place-items-center rounded-full border border-black/10 bg-white text-[var(--text-primary)] hover:bg-[var(--bg-alt)] transition-colors"
-              >
-                {isPaused ? (
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="8,5 19,12 8,19" />
-                  </svg>
-                ) : (
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <rect x="6" y="5" width="4" height="14" />
-                    <rect x="14" y="5" width="4" height="14" />
-                  </svg>
-                )}
-              </button>
             </div>
           </div>
         </FadeUp>
       </div>
-
-      <style jsx global>{`
-        @keyframes carousel-progress {
-          from { width: 0%; }
-          to { width: 100%; }
-        }
-      `}</style>
     </section>
   );
 }
