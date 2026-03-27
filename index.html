@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -85,7 +84,7 @@
             border: 1px solid rgba(48, 209, 88, 0.2);
         }
 
-        /* ═══════ NAV ═══════ */
+        /* ═ NAV ═ */
         .nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             padding: 0 24px; height: var(--nav-height); display: flex; align-items: center;
@@ -209,7 +208,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* ═══════ HERO ═══════ */
+        /* ═ HERO ═ */
         .hero {
             min-height: 100vh;
             min-height: 100dvh;
@@ -244,7 +243,15 @@
             -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
         }
         .hero__content { position: relative; z-index: 1; width: 100%; }
-        .hero__top { text-align: center; max-width: 720px; margin: 0 auto 48px; }
+        .hero__layout {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+        .hero__left { flex: 1; min-width: 0; }
+        .hero__right { flex: 1; min-width: 0; }
+        .hero__top { text-align: left; max-width: 720px; margin: 0 0 36px; }
         .hero__title {
             font-size: clamp(28px, 6vw, 60px); font-weight: 800;
             letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 20px;
@@ -259,7 +266,34 @@
             line-height: 1.6; margin-bottom: 36px; font-weight: 400;
             padding: 0 8px;
         }
+        .hero__robot {
+            width: 100%;
+            height: clamp(320px, 40vw, 520px);
+            margin: 0;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: none;
+            box-shadow: none;
+            background: transparent;
+        }
+        .hero__robot canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .hero__robot-fallback {
+            display: none;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            text-align: center;
+            padding: 24px;
+        }
         .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+        .hero__actions--left { justify-content: flex-start; }
 
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
@@ -291,7 +325,7 @@
         }
         .btn--outline:active { transform: translateY(0); }
 
-        /* ═══════ SPOTLIGHT DEMO WIDGET ═══════ */
+        /* ═ SPOTLIGHT DEMO WIDGET ═ */
         .spotlight-widget { max-width: 780px; margin: 0 auto; position: relative; }
 
         .spotlight-frame {
@@ -409,7 +443,7 @@
         .spotlight-hint { padding: 8px 12px 10px; text-align: center; }
         .spotlight-hint__text { font-size: 11px; color: var(--text-quaternary); font-weight: 500; }
 
-        /* ═══════ PARTNERS STRIP ═══════ */
+        /* ═ PARTNERS STRIP ═ */
         .partners {
             background: var(--bg-alt);
             border-top: 1px solid var(--border);
@@ -457,7 +491,7 @@
         }
         @keyframes dot-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-        /* ═══════ SECTION HEADER ═══════ */
+        /* ═ SECTION HEADER ═ */
         .section-header { text-align: center; margin-bottom: 48px; }
         .section-badge { margin-bottom: 16px; }
         .section-title {
@@ -471,7 +505,7 @@
             padding: 0 8px;
         }
 
-        /* ═══════ DEMO TILES ═══════ */
+        /* ═ DEMO TILES ═ */
         .demo-tiles-section {
             padding: 100px 0;
             background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
@@ -617,7 +651,7 @@
             margin-top: 1px;
         }
 
-        /* ═══════ VIDEO MODAL ═══════ */
+        /* ═ VIDEO MODAL ═ */
         .video-modal {
             position: fixed;
             inset: 0;
@@ -766,7 +800,7 @@
             flex-shrink: 0;
         }
 
-        /* ═══════ DEMO RESOURCES ═══════ */
+        /* ═ DEMO RESOURCES ═ */
         .demo__resources { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .demo-resource {
             background: var(--bg-card); border: 1px solid var(--border);
@@ -800,7 +834,7 @@
             fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
         }
 
-        /* ═══════ ROADMAP ═══════ */
+        /* ═ ROADMAP ═ */
         .roadmap__timeline {
             max-width: 860px; margin: 0 auto; position: relative;
             padding-left: 28px;
@@ -867,7 +901,7 @@
         }
         .roadmap-step__desc a:hover { text-decoration: underline; }
 
-        /* ═══════ CONTACTS TABLE ═══════ */
+        /* ═ CONTACTS TABLE ═ */
         .contacts-table-wrap {
             max-width: 800px; margin: 0 auto;
             background: var(--bg-card); border: 1px solid var(--border);
@@ -926,7 +960,7 @@
             stroke-linecap: round; stroke-linejoin: round;
         }
 
-        /* ═══════ ABOUT SPOTLIGHT CAROUSEL ═══════ */
+        /* ═ ABOUT SPOTLIGHT CAROUSEL ═ */
         .about-carousel-section {
             padding: 100px 0;
             background: var(--bg);
@@ -1035,7 +1069,7 @@
             transition: none !important;
         }
 
-        /* ═══════ CTA ═══════ */
+        /* ═ CTA ═ */
         .cta {
             padding: 100px 0; text-align: center;
             position: relative; overflow: hidden; background: var(--bg);
@@ -1064,7 +1098,7 @@
         }
         .cta__contact a:hover { color: var(--text-primary); }
 
-        /* ═══════ FOOTER ═══════ */
+        /* ═ FOOTER ═ */
         .footer { padding: 32px 0; border-top: 1px solid var(--border); background: var(--bg); }
         .footer__inner { display: flex; justify-content: space-between; align-items: center; }
         .footer__copy { font-size: 13px; color: var(--text-tertiary); }
@@ -1075,7 +1109,7 @@
         }
         .footer__link:hover { color: var(--text-primary); }
 
-        /* ═══════ RESPONSIVE ═══════ */
+        /* ═ RESPONSIVE ═ */
 
         /* Tablet */
         @media (max-width: 960px) {
@@ -1087,6 +1121,16 @@
             .partners__inner { gap: 24px; }
             .partners__divider { display: none; }
             .section-header { margin-bottom: 40px; }
+            .hero__layout {
+                flex-direction: column;
+                margin-bottom: 36px;
+            }
+            .hero__top {
+                text-align: center;
+                margin: 0 auto 28px;
+            }
+            .hero__actions--left { justify-content: center; }
+            .hero__right { width: 100%; }
 
             .about-carousel__nav {
                 width: 40px; height: 40px;
@@ -1117,6 +1161,10 @@
             .hero__top { margin-bottom: 32px; }
             .hero__title { margin-bottom: 16px; }
             .hero__subtitle { margin-bottom: 28px; font-size: 15px; }
+            .hero__robot {
+                height: clamp(260px, 70vw, 420px);
+                border-radius: var(--radius-md);
+            }
             .hero__actions { flex-direction: column; padding: 0 8px; }
             .btn {
                 width: 100%; justify-content: center;
@@ -1256,7 +1304,7 @@
             .spotlight-widget { max-width: 600px; }
         }
 
-        /* ═══════ ANIMATIONS ═══════ */
+        /* ═ ANIMATIONS ═ */
         .fade-up {
             opacity: 0; transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -1280,10 +1328,32 @@
             .about-carousel__nav:hover { background: rgba(255,255,255,0.9); border-color: var(--border); }
         }
     </style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108252269', 'ym');
+
+    ym(108252269, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108252269" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1YRZZ9BC4P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1YRZZ9BC4P');
+</script>
 </head>
 <body>
 
-<!-- ═══════════════ NAV ═══════════════ -->
+<!-- ═ NAV ═ -->
 <nav class="nav">
     <div class="nav__inner">
         <a href="#" class="nav__logo">
@@ -1316,19 +1386,35 @@
     <a href="#roadmap" class="nav__mobile-cta" data-close-menu>Подключить продукт</a>
 </div>
 
-<!-- ═══════════════ HERO ═══════════════ -->
+<!-- ═ HERO ═ -->
 <section class="hero" id="about">
     <div class="hero__bg"><div class="hero__grid"></div></div>
     <div class="container">
         <div class="hero__content">
 
-            <div class="hero__top">
-                <h1 class="hero__title">
-                    <span>Spotlight</span> – точка сборки всех клиентских путей
-                </h1>
-                <p class="hero__subtitle">
-                    Ваш продукт в центре внимания клиента в главной строке банка в АБ и АБМ
-                </p>
+            <div class="hero__layout">
+                <div class="hero__left">
+                    <div class="hero__top">
+                        <h1 class="hero__title">
+                            <span>Spotlight</span> – точка сборки всех клиентских путей
+                        </h1>
+                        <p class="hero__subtitle">
+                            Ваш продукт в центре внимания клиента в главной строке банка в АБ и АБМ
+                        </p>
+                        <div class="hero__actions hero__actions--left">
+                            <a href="#roadmap" class="btn btn--primary">Подключить свой продукт</a>
+                            <a href="#scenarios" class="btn btn--outline">Смотреть демо</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__right">
+                    <div class="hero__robot fade-up" aria-label="3D робот Spotlight">
+                        <canvas id="heroRobotCanvas" aria-hidden="true"></canvas>
+                        <div class="hero__robot-fallback" id="heroRobotFallback">
+                            Не удалось загрузить 3D-анимацию. Проверьте доступ к CDN и Spline.
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- ── SPOTLIGHT WIDGET ── -->
@@ -1392,7 +1478,7 @@
     </div>
 </section>
 
-<!-- ═══════════════ ПРО SPOTLIGHT ═══════════════ -->
+<!-- ═ ПРО SPOTLIGHT ═ -->
 <section class="about-carousel-section" id="why">
     <div class="container">
         <div class="section-header fade-up">
@@ -1420,7 +1506,7 @@
     </div>
 </section>
 
-<!-- ═══════════════ DEMO TILES ═══════════════ -->
+<!-- ═ DEMO TILES ═ -->
 <section class="demo-tiles-section" id="scenarios">
     <div class="container">
         <div class="section-header fade-up">
@@ -1516,7 +1602,7 @@
     </div>
 </section>
 
-<!-- ═══════════════ VIDEO MODAL ═══════════════ -->
+<!-- ═ VIDEO MODAL ═ -->
 <div class="video-modal" id="videoModal">
     <div class="video-modal__overlay" id="videoModalOverlay"></div>
     <div class="video-modal__content">
@@ -1541,7 +1627,7 @@
     </div>
 </div>
 
-<!-- ═══════════════ DEMO RESOURCES ═══════════════ -->
+<!-- ═ DEMO RESOURCES ═ -->
 <section class="section section--alt" id="demo">
     <div class="container">
         <div class="section-header fade-up">
@@ -1578,7 +1664,7 @@
     </div>
 </section>
 
-<!-- ═══════════════ ROADMAP ═══════════════ -->
+<!-- ═ ROADMAP ═ -->
 <section class="section" id="roadmap">
     <div class="container">
         <div class="section-header fade-up">
@@ -1718,7 +1804,7 @@
     </div>
 </section>
 
-<!-- ═══════════════ CONTACTS ═══════════════ -->
+<!-- ═ CONTACTS ═ -->
 <section class="section section--alt" id="contacts">
     <div class="container">
         <div class="section-header fade-up">
@@ -1735,7 +1821,7 @@
                     <tr><td>PO Alfagen</td><td>Роздобара Евгений</td></tr>
                     <tr><td>Техлид LLM/MCP</td><td>Стёпин Андрей</td></tr>
                     <tr><td>Бизнес-аналитик</td><td>Калашникова Светлана</td></tr>
-                    <tr><td>Подключайтесь в канал Rocket Chat</td><td><a href="https://go.rocket.chat/invite?host=rc.alfa-bank.net&path=invite%2FYvrQS9" target="_blank" rel="noopener noreferrer">Канал Spotlight</a></td></tr>
+                    <tr><td>Подключайтесь в канал Rocket Chat</td><td><a href="https://rc.alfa-bank.net/channel/Spotlight" target="_blank" rel="noopener noreferrer">Канал Spotlight</a></td></tr>
                 </tbody>
             </table>
         </div>
@@ -1766,7 +1852,7 @@
     </div>
 </section>
 
-<!-- ═══════════════ CTA ═══════════════ -->
+<!-- ═ CTA ═ -->
 <section class="cta" id="connect">
     <div class="cta__content fade-up">
         <h2 class="cta__title">Готовы подключиться?</h2>
@@ -1778,8 +1864,60 @@
     </div>
 </section>
 
-<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<!-- ═ SCRIPTS ═ -->
 <script>
+    // ---- Spline runtime loader (same approach as test123-main) ----
+    (function() {
+        var runtimeSources = [
+            'https://esm.sh/@splinetool/runtime@1.12.69',
+            'https://cdn.jsdelivr.net/npm/@splinetool/runtime@1.12.69/build/runtime.js'
+        ];
+        var sceneUrl = 'https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode';
+
+        function showRobotFallback() {
+            var viewer = document.getElementById('heroRobotCanvas');
+            var fallback = document.getElementById('heroRobotFallback');
+            if (!fallback) return;
+            if (viewer) viewer.style.display = 'none';
+            fallback.style.display = 'flex';
+        }
+
+        async function loadRuntimeModule() {
+            for (var i = 0; i < runtimeSources.length; i++) {
+                try {
+                    var mod = await import(runtimeSources[i]);
+                    if (mod && mod.Application) return mod.Application;
+                } catch (err) {
+                    // try next source
+                }
+            }
+            return null;
+        }
+
+        async function initSpline() {
+            var canvas = document.getElementById('heroRobotCanvas');
+            if (!canvas) return;
+
+            var Application = await loadRuntimeModule();
+            if (!Application) {
+                showRobotFallback();
+                return;
+            }
+
+            try {
+                var app = new Application(canvas);
+                await app.load(sceneUrl);
+                if (typeof app.setGlobalEvents === 'function') {
+                    app.setGlobalEvents(true);
+                }
+            } catch (err) {
+                showRobotFallback();
+            }
+        }
+
+        initSpline();
+    })();
+
     // ---- Mobile nav hamburger ----
     (function() {
         var hamburger = document.getElementById('navHamburger');
